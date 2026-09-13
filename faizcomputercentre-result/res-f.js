@@ -126,7 +126,6 @@ if (testIdInput) {
         "input",
         () => {
 
-            addFCCPrefix(testIdInput);
 
             // Hide old result when user changes test ID
 
