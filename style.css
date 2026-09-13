@@ -19,7 +19,13 @@ body {
         radial-gradient(circle at top right, #ffdaed 0%, transparent 80%),
         radial-gradient(circle at bottom left, #ffdaed 0%, transparent 80%),
         radial-gradient(circle at bottom right, #ffdaed 0%, transparent 80%);
-
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: rgba(255, 192, 203, 0.678) rgba(255, 0, 0, 0.300);
+    scrollbar-width: thin;
+}
+.main::-webkit-scrollbar-scrollbar {
+    width: 2px;
 }
 
 .top-nav {
@@ -115,8 +121,12 @@ body {
 
 
 .hero strong {
-    color: rgb(255, 56, 56);
+    color: rgb(54, 27, 27);
     font-size: 0.7rem;
+    font-weight: 700;
+    text-wrap: nowrap;
+    letter-spacing: 1px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .computer-dp {
@@ -168,7 +178,7 @@ body {
 
 .pro-count {
     color: rgb(126, 62, 73);
-    font: 500;
+    font-weight: 500;
     font-size: 0.8rem;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -198,7 +208,7 @@ body {
     position: absolute;
     bottom: 30px;
     left: 10px;
-    color: rgb(110, 46, 57);
+    color: rgb(255, 2, 44);
 
 }
 
@@ -246,8 +256,90 @@ body {
     inset: 0;
     width: 100%;
     height: 100%;
-    background:linear-gradient(to bottom, rgb(255, 209, 209), rgb(255, 219, 225));
+    background: linear-gradient(to bottom, rgb(255, 209, 209), rgb(255, 219, 225));
 }
-.active{
+
+.active {
     display: flex;
+}
+
+.enroll {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+}
+
+.enroll-b {
+    width: 80%;
+    justify-content: space-between;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(255, 202, 202);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.627) 0%, rgba(255, 192, 203, 0.605) 70%);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 10px rgb(255, 255, 255), 0 0 10px rgba(255, 255, 255);
+}
+
+.e-top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.e-c-n {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.e-logo {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    z-index: 2;
+    transform: translateY(8px) translateX(40px);
+    overflow: visible;
+    animation: enrollAnimation alternate-reverse 2s infinite;
+}
+
+@keyframes enrollAnimation {
+    0% {
+        transform: translateY(8px) translateX(40px);
+    }
+
+    100% {
+        transform: translateY(14px) translateX(40px);
+    }
+}
+
+.e-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgb(255, 202, 202);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+    background: linear-gradient(-135deg, rgba(255, 0, 0, 0.627) 0%, rgba(255, 192, 203, 0.605) 70%);
+
+}
+
+.e-bottom:hover,
+.e-bottom:active {
+    background: linear-gradient(-135deg, rgba(255, 0, 0) 0%, rgba(255, 192, 203) 70%);
+
+}
+
+.hidden {
+    display: none;
 }

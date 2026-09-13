@@ -70,6 +70,11 @@ body {
     outline: none;
     border: 2px solid #ff0000;
 }
+.btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .submit-btn {
     padding:10px;
     background-color: #007bff;
@@ -97,6 +102,8 @@ body {
     transition: background 0.3s ease-in-out;
     transform: scale(0.7);
     color: #ff0000;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
     border: 2px solid #ff4d00;
     border-radius: 20px;
     cursor: pointer;

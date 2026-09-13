@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faiz Computer Centre - Results</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="teacher.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Faiz Computer Centre</h1>
+
+        <div class="results-container">
+            <img src="/faiz-computer-centre/Ac-Dash/assets/fcc_logo.png" alt="Faiz Computer Centre Logo">
+            <div class="res-q">
+                <input class="form-control" id="roll-number" type="text" placeholder="Enter Roll Number- FCC-2026-52" >
+                <input class="form-control" id="test-date" type="text" placeholder="Enter Test Date- FCC-20260910">
+                <input class="form-control" id="student-name" type="text" placeholder="Enter Student Name">
+                <input class="form-control" id="full-marks" type="number" placeholder="Enter Full Marks">
+                <input class="form-control" id="gain-marks" type="number" placeholder="Enter Gain Marks">
+
+                <strong id="roll-btn" class="roll-btn">Update Result</strong>
+            </div>
+            <strong class="note">
+                Note: Please ensure that the details entered are accurate and correspond to the correct student. Double-check the roll number, name, and marks before updating the result.
+            </strong>
+        </div>
+    </div>
+    <div class="overlay login-overlay">
+        <!-- logging to check  techer can access only -->
+         <div class="login-container">
+            <h3>Faiz Computer Centre</h3>
+            <img src="/faiz-computer-centre/Ac-Dash/assets/fcc_logo.png" alt="Faiz Computer Centre Logo" class="logo">
+            <strong class="top">Teacher Login</strong>
+            <div class="res-q">
+                <input id="teacher-email" type="email" placeholder="Enter Teacher Email">
+                <input id="teacher-password" type="password" placeholder="Enter Teacher Password">
+                <input id="teacher-sec-key" type="text" placeholder="Enter Teacher Sec-Key">
+                <strong id="login-btn" class="roll-btn">Login</strong>
+            </div>
+
+         </div>
+       
+    </div>
+</body>
+
+</html>
