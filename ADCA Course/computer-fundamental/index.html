@@ -1,0 +1,4871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ADCA | Computer Fundamentals — Module 01</title>
+
+<style>
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --pink:#ff2f7d;
+    --pink-dark:#d71960;
+    --pink-light:#ffe5ef;
+    --red:#e91e3d;
+    --purple:#7627d9;
+    --text:#242424;
+    --muted:#666;
+    --white:#fff;
+    --bg:#fff7fa;
+    --border:#f0cbd8;
+    --shadow:0 15px 45px rgba(190,20,90,.14);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(circle at top left,#ffeaf3 0,transparent 35%),
+        radial-gradient(circle at bottom right,#f5e9ff 0,transparent 35%),
+        var(--bg);
+
+    color:var(--text);
+    line-height:1.7;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.module-header{
+    position:relative;
+    overflow:hidden;
+    padding:55px 25px 70px;
+    background:
+        linear-gradient(
+            135deg,
+            #ff176e,
+            #ff4e91 45%,
+            #8c35dc
+        );
+    color:white;
+}
+
+.module-header::before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    top:-220px;
+    right:-120px;
+}
+
+.module-header::after{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    bottom:-180px;
+    left:-80px;
+}
+
+.header-inner{
+    max-width:1150px;
+    margin:auto;
+    position:relative;
+    z-index:2;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 15px;
+    border-radius:999px;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.28);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.4px;
+}
+
+.module-header h1{
+    margin-top:18px;
+    font-size:clamp(32px,5vw,58px);
+    line-height:1.08;
+    max-width:850px;
+}
+
+.module-header p{
+    max-width:800px;
+    margin-top:18px;
+    font-size:18px;
+    opacity:.94;
+}
+
+.meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
+}
+
+.meta{
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+    padding:9px 14px;
+    font-size:13px;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container{
+    max-width:1150px;
+    margin:-30px auto 80px;
+    padding:0 18px;
+    position:relative;
+    z-index:5;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:20px;
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.progress-top strong{
+    color:var(--pink-dark);
+}
+
+.progress-track{
+    height:11px;
+    border-radius:999px;
+    background:#f6dce6;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:11.11%;
+    height:100%;
+    background:var(--pink);
+    border-radius:999px;
+    transition:.4s ease;
+}
+
+/* =========================================================
+   LESSON NAVIGATION
+========================================================= */
+
+.lesson-tabs{
+    display:flex;
+    gap:9px;
+    overflow-x:auto;
+    padding:4px 2px 14px;
+    scrollbar-width:thin;
+}
+
+.lesson-tab{
+    flex:0 0 auto;
+    border:1px solid var(--border);
+    background:white;
+    color:#555;
+    border-radius:12px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.25s;
+}
+
+.lesson-tab:hover{
+    transform:translateY(-2px);
+}
+
+.lesson-tab.active{
+    background:var(--pink);
+    color:white;
+    border-color:var(--pink);
+    box-shadow:0 7px 18px rgba(255,47,125,.25);
+}
+
+.lesson-tab.completed{
+    border-color:#40a96d;
+}
+
+/* =========================================================
+   LESSON CARD
+========================================================= */
+
+.lesson{
+    display:none;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.lesson.active{
+    display:block;
+    animation:lessonIn .35s ease;
+}
+
+@keyframes lessonIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.lesson-heading{
+    padding:35px;
+    background:#fff;
+    border-bottom:1px solid var(--border);
+}
+
+.lesson-number{
+    color:var(--pink);
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.lesson-heading h2{
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.2;
+    margin-top:7px;
+}
+
+.lesson-heading p{
+    color:var(--muted);
+    max-width:850px;
+    margin-top:12px;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.lesson-body{
+    padding:35px;
+}
+
+.section{
+    margin-bottom:40px;
+}
+
+.section:last-child{
+    margin-bottom:0;
+}
+
+.section h3{
+    font-size:24px;
+    margin-bottom:13px;
+    color:#272027;
+}
+
+.section h4{
+    margin:20px 0 8px;
+    font-size:18px;
+}
+
+.section p{
+    margin-bottom:12px;
+}
+
+.section ul,
+.section ol{
+    padding-left:25px;
+    margin:10px 0;
+}
+
+.section li{
+    margin:7px 0;
+}
+
+/* =========================================================
+   INFO BOXES
+========================================================= */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.info-box{
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:17px;
+    background:#fffafd;
+}
+
+.info-box strong{
+    display:block;
+    margin-bottom:7px;
+    font-size:17px;
+}
+
+.teacher{
+    border-left:5px solid var(--purple);
+    background:#f8f1ff;
+    padding:20px;
+    border-radius:0 15px 15px 0;
+}
+
+.remember{
+    border-left:5px solid var(--pink);
+    background:#fff0f6;
+    padding:20px;
+    border-radius:0 15px 15px 0;
+}
+
+.warning{
+    border-left:5px solid #e9a400;
+    background:#fff8df;
+    padding:20px;
+    border-radius:0 15px 15px 0;
+}
+
+.example{
+    border-left:5px solid #3498db;
+    background:#edf8ff;
+    padding:20px;
+    border-radius:0 15px 15px 0;
+}
+
+/* =========================================================
+   DIAGRAM
+========================================================= */
+
+.diagram{
+    margin:20px 0;
+    padding:25px;
+    background:#17131a;
+    color:white;
+    border-radius:20px;
+    overflow:auto;
+}
+
+.diagram-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.diagram-box{
+    padding:13px 18px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+    background:rgba(255,255,255,.08);
+    text-align:center;
+    min-width:120px;
+}
+
+.arrow{
+    font-size:25px;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrap{
+    overflow-x:auto;
+    margin:18px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:650px;
+}
+
+th,
+td{
+    border:1px solid #ecd4de;
+    padding:12px 14px;
+    text-align:left;
+}
+
+th{
+    background:#ffeaf2;
+    color:#8f174b;
+}
+
+tr:nth-child(even) td{
+    background:#fffafd;
+}
+
+/* =========================================================
+   CODE
+========================================================= */
+
+.code{
+    background:#18151a;
+    color:#f8f8f8;
+    padding:20px;
+    border-radius:16px;
+    overflow:auto;
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+    line-height:1.6;
+    margin:15px 0;
+}
+
+/* =========================================================
+   CHECKPOINT
+========================================================= */
+
+.checkpoint{
+    background:#fffafd;
+    border:1px solid #e7c7d7;
+    border-radius:20px;
+    padding:22px;
+}
+
+.check-question{
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.check-options{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.check-option{
+    border:1px solid #e2c5d2;
+    background:white;
+    padding:9px 13px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.check-option:hover{
+    border-color:var(--pink);
+}
+
+.check-option.correct{
+    background:#dff8e9;
+    border-color:#42a36b;
+}
+
+.check-option.wrong{
+    background:#ffe2e7;
+    border-color:#dc4c68;
+}
+
+.check-result{
+    margin-top:10px;
+    font-weight:700;
+}
+
+/* =========================================================
+   FOOTER NAV
+========================================================= */
+
+.lesson-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:25px 35px;
+    border-top:1px solid var(--border);
+    background:#fffafd;
+}
+
+.btn{
+    border:0;
+    cursor:pointer;
+    border-radius:13px;
+    padding:12px 19px;
+    font-size:14px;
+    font-weight:800;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:var(--pink);
+    color:white;
+    box-shadow:0 8px 20px rgba(255,47,125,.2);
+}
+
+.btn-secondary{
+    background:white;
+    color:#555;
+    border:1px solid var(--border);
+}
+
+.btn-test{
+    background:var(--pink);
+    color:white;
+    padding:15px 25px;
+    font-size:16px;
+}
+
+/* =========================================================
+   TEST OVERLAY
+========================================================= */
+
+.test-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:#09070a;
+    color:white;
+}
+
+.test-overlay.active{
+    display:flex;
+    flex-direction:column;
+}
+
+.test-topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:14px 20px;
+    border-bottom:1px solid #302830;
+    background:#100c11;
+}
+
+.test-brand{
+    font-weight:900;
+}
+
+.test-status{
+    color:#ff7baa;
+    font-size:14px;
+}
+
+.test-main{
+    width:min(900px,94%);
+    margin:auto;
+    padding:30px 0;
+}
+
+.test-question-number{
+    color:#ff6395;
+    font-size:14px;
+    font-weight:800;
+}
+
+.test-question{
+    font-size:clamp(22px,4vw,34px);
+    line-height:1.35;
+    margin:12px 0 25px;
+}
+
+.test-options{
+    display:grid;
+    gap:12px;
+}
+
+.test-option{
+    text-align:left;
+    padding:17px;
+    border-radius:14px;
+    border:1px solid #3c323c;
+    background:#151015;
+    color:white;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.test-option:hover{
+    border-color:#ff4f8c;
+    background:#20161d;
+}
+
+.test-option.selected{
+    border-color:#ff4f8c;
+    background:#301824;
+}
+
+.test-bottom{
+    width:min(900px,94%);
+    margin:0 auto 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.test-progress{
+    flex:1;
+    height:8px;
+    background:#312831;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.test-progress-bar{
+    height:100%;
+    width:5%;
+    background:#ff3f82;
+    transition:.3s;
+}
+
+.test-nav{
+    display:flex;
+    gap:9px;
+}
+
+/* =========================================================
+   SECURITY WARNING
+========================================================= */
+
+.warning-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100000;
+    background:rgba(0,0,0,.86);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.warning-modal.active{
+    display:flex;
+}
+
+.warning-card{
+    width:min(500px,100%);
+    background:white;
+    color:#222;
+    border-radius:22px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 25px 70px rgba(0,0,0,.4);
+}
+
+.warning-icon{
+    font-size:50px;
+}
+
+.warning-card h2{
+    margin:10px 0;
+}
+
+.warning-count{
+    color:var(--red);
+    font-weight:900;
+}
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:100001;
+    background:rgba(18,10,16,.9);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.result-overlay.active{
+    display:flex;
+}
+
+.result-card{
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:white;
+    color:#222;
+    border-radius:25px;
+    padding:35px;
+}
+
+.score-circle{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    margin:20px auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#fff0f5;
+    border:10px solid #ff4b87;
+}
+
+.score-circle strong{
+    font-size:36px;
+    color:#d71960;
+}
+
+.result-message{
+    text-align:center;
+}
+
+.answer-review{
+    margin-top:25px;
+}
+
+.review-item{
+    padding:13px;
+    border-radius:12px;
+    margin:8px 0;
+}
+
+.review-correct{
+    background:#e5f8ec;
+}
+
+.review-wrong{
+    background:#ffe7eb;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:700px){
+
+    .module-header{
+        padding:40px 18px 55px;
+    }
+
+    .container{
+        padding:0 10px;
+    }
+
+    .lesson-heading,
+    .lesson-body{
+        padding:23px;
+    }
+
+    .lesson-footer{
+        padding:20px 23px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lesson-footer{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .lesson-footer .btn{
+        width:100%;
+    }
+
+    .test-topbar{
+        padding:11px 13px;
+        align-items:flex-start;
+    }
+    .test-status-group{gap:7px}
+    .question-timer{min-width:68px;padding:6px 9px;font-size:13px}
+
+    .test-main{
+        padding:20px 0;
+    }
+
+    .test-bottom{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .test-nav{
+        justify-content:space-between;
+    }
+}
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print{
+    .lesson-tabs,
+    .lesson-footer,
+    .test-overlay,
+    .warning-modal,
+    .result-overlay{
+        display:none!important;
+    }
+
+    .lesson{
+        display:block!important;
+        box-shadow:none;
+        border:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =======================================================
+     MODULE HEADER
+======================================================= -->
+
+<header class="module-header">
+
+    <div class="header-inner">
+
+        <span class="badge">
+            ❤️ FAIZ COMPUTER CENTER
+        </span>
+
+        <h1>
+            Computer Fundamentals
+        </h1>
+
+        <p>
+            <strong>ADCA — Module 01</strong><br>
+            Understand what a computer really is, how its components
+            communicate, how information is processed and stored,
+            and why modern computing systems work the way they do.
+        </p>
+
+        <div class="meta-row">
+
+            <div class="meta">📘 Level: Advanced Diploma</div>
+            <div class="meta">⏱️ 9 Learning Sessions</div>
+            <div class="meta">🧠 Concept + Practical</div>
+            <div class="meta">📝 Final Assessment</div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+<!-- =======================================================
+     PROGRESS
+======================================================= -->
+
+<div class="progress-card">
+
+    <div class="progress-top">
+        <strong id="progressText">
+            Lesson 1 of 9
+        </strong>
+
+        <span id="progressPercent">
+            11%
+        </span>
+    </div>
+
+    <div class="progress-track">
+        <div
+            class="progress-bar"
+            id="progressBar">
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     LESSON TABS
+======================================================= -->
+
+<div class="lesson-tabs" id="lessonTabs"></div>
+
+
+<!-- =======================================================
+     LESSONS
+======================================================= -->
+
+
+<!-- =======================================================
+     LESSON 1
+======================================================= -->
+
+<section class="lesson active" data-lesson="0">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 01
+</div>
+
+<h2>
+🖥️ Introduction to Computers
+</h2>
+
+<p>
+Before learning software, programming or networking, you need to
+understand the machine underneath everything. This lesson builds
+that foundation from the simplest idea of a computer to the
+relationship between users, software and hardware.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. What is a Computer?</h3>
+
+<p>
+A computer is an electronic, programmable system that receives
+data, performs operations on that data according to instructions,
+produces meaningful results, and can store those results for
+future use.
+</p>
+
+<p>
+The important word here is <strong>programmable</strong>.
+A computer is not simply an electronic calculator. We can give
+the same machine different instructions and make it perform
+completely different tasks.
+</p>
+
+<div class="example">
+
+<strong>💡 Real-life example</strong>
+
+<p>
+Your laptop can be used to write a document, watch a movie,
+calculate salary, edit a photograph, run a web server or write
+Python programs. The physical machine remains largely the same;
+the instructions and software determine what it does.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. Data and Information</h3>
+
+<p>
+One of the most important concepts in computing is the difference
+between <strong>data</strong> and <strong>information</strong>.
+</p>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<strong>📥 Data</strong>
+
+Raw facts that have not yet been interpreted.
+
+<br><br>
+
+Example:
+<code>72, 85, 91, 68</code>
+
+</div>
+
+<div class="info-box">
+
+<strong>📊 Information</strong>
+
+Processed and meaningful data.
+
+<br><br>
+
+Example:
+“The student's average score is 79%.”
+
+</div>
+
+</div>
+
+<p>
+A computer primarily manipulates data. Through processing,
+data can become information useful for decision-making.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. The Basic Computer System</h3>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+📥<br>
+<strong>INPUT</strong><br>
+Data enters
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+⚙️<br>
+<strong>PROCESSING</strong><br>
+Instructions execute
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+📤<br>
+<strong>OUTPUT</strong><br>
+Result produced
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+💾<br>
+<strong>STORAGE</strong><br>
+Saved for later
+</div>
+
+</div>
+
+</div>
+
+<p>
+This model is simple, but it represents the foundation of almost
+every computing system.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. What Actually Happens When You Calculate 25 + 75?</h3>
+
+<p>
+Suppose you open a calculator and enter:
+</p>
+
+<div class="code">
+25 + 75
+</div>
+
+<ol>
+
+<li>
+The keyboard or touchscreen provides the input.
+</li>
+
+<li>
+The operating system and calculator application receive that input.
+</li>
+
+<li>
+The processor executes instructions that represent the calculation.
+</li>
+
+<li>
+The arithmetic operation is performed by the processor's
+arithmetic logic circuitry.
+</li>
+
+<li>
+The result <strong>100</strong> is generated.
+</li>
+
+<li>
+The display system sends the result to your screen.
+</li>
+
+</ol>
+
+<p>
+What looks like a simple operation to a human is actually a
+sequence of electronic and software operations.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>5. Hardware, Software and Firmware</h3>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<strong>🔩 Hardware</strong>
+
+The physical parts of a computer that can be physically
+touched.
+
+<br><br>
+
+CPU, RAM, motherboard, keyboard, monitor, SSD.
+
+</div>
+
+<div class="info-box">
+
+<strong>💻 Software</strong>
+
+Programs and instructions that tell hardware what to do.
+
+<br><br>
+
+Windows, Linux, browsers, games, Python programs.
+
+</div>
+
+<div class="info-box">
+
+<strong>⚙️ Firmware</strong>
+
+Low-level software stored in hardware that helps initialize
+and control the device.
+
+<br><br>
+
+Example: BIOS/UEFI firmware.
+
+</div>
+
+<div class="info-box">
+
+<strong>👤 User</strong>
+
+The person or external system providing goals, commands or data.
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>6. Computer System Architecture — The Big Picture</h3>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+👤<br>
+USER
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+📱<br>
+APPLICATION
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🪟<br>
+OPERATING SYSTEM
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🧠<br>
+HARDWARE
+</div>
+
+</div>
+
+</div>
+
+<p>
+For example, when you click “Save” in a document editor, the
+application requests the operating system to write data to a
+storage device. The operating system communicates with hardware
+through drivers and hardware interfaces.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>7. Characteristics of Computers</h3>
+
+<ul>
+
+<li><strong>Speed:</strong> Computers can execute enormous numbers
+of operations in very short periods.</li>
+
+<li><strong>Accuracy:</strong> They can perform calculations
+consistently when given correct instructions and data.</li>
+
+<li><strong>Automation:</strong> Once programmed, many tasks can
+execute with little human intervention.</li>
+
+<li><strong>Diligence:</strong> Computers do not become tired from
+repeating the same operation.</li>
+
+<li><strong>Versatility:</strong> One machine can perform many
+different classes of tasks.</li>
+
+<li><strong>Storage:</strong> Large amounts of information can be
+stored and retrieved electronically.</li>
+
+<li><strong>Consistency:</strong> The same instructions generally
+produce the same result under the same conditions.</li>
+
+</ul>
+
+</div>
+
+
+<div class="section">
+
+<h3>8. Limitations of Computers</h3>
+
+<p>
+Computers are powerful, but they do not possess unlimited
+independent intelligence.
+</p>
+
+<ul>
+
+<li>
+They require instructions, algorithms or trained models to
+perform tasks.
+</li>
+
+<li>
+Incorrect input can produce incorrect output.
+</li>
+
+<li>
+Traditional programs do not possess human emotions or common
+sense.
+</li>
+
+<li>
+Hardware has physical limitations such as memory, energy and
+processing capacity.
+</li>
+
+<li>
+Security vulnerabilities can allow unauthorized access or
+manipulation.
+</li>
+
+</ul>
+
+<div class="warning">
+
+<strong>⚠️ Common mistake</strong>
+
+<p>
+“Computers never make mistakes” is incorrect.
+A computer can execute instructions extremely accurately while
+still producing a completely wrong result if the program,
+algorithm or input is wrong.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+A useful way to think about a computer is not as a “smart box”
+but as a <strong>programmable information-processing system</strong>.
+The intelligence of a conventional computer program comes from
+the algorithms and instructions designed by humans.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="remember">
+
+<strong>🧠 Remember</strong>
+
+<p>
+Computer fundamentals are built around four major ideas:
+<strong>data, instructions, processing and storage</strong>.
+If you understand these four concepts, later topics such as
+programming, databases, operating systems and networking become
+much easier.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+What transforms raw data into meaningful information?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="false">
+Storage
+</button>
+
+<button class="check-option"
+data-correct="true">
+Processing
+</button>
+
+<button class="check-option"
+data-correct="false">
+Keyboard
+</button>
+
+<button class="check-option"
+data-correct="false">
+Monitor
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button
+class="btn btn-secondary"
+disabled>
+← Previous
+</button>
+
+<button
+class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 2
+======================================================= -->
+
+<section class="lesson" data-lesson="1">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 02
+</div>
+
+<h2>
+🕰️ History & Generations of Computers
+</h2>
+
+<p>
+Computer history is not simply a list of machines. It is the story
+of how humans progressively reduced the size, cost and energy
+requirements of computation while increasing speed, reliability
+and capability.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. Why Did Humans Need Computers?</h3>
+
+<p>
+Long before electronic computers existed, humans needed to
+perform calculations for trade, astronomy, navigation, taxation,
+engineering and science.
+</p>
+
+<p>
+The earliest solutions were manual. Later, mechanical devices
+were designed to reduce human calculation effort. Eventually,
+electronic circuits made high-speed automatic computation possible.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. Abacus — One of the Earliest Calculation Tools</h3>
+
+<p>
+The abacus uses movable beads to represent numerical quantities.
+It is not an electronic computer, but it demonstrates an important
+idea: <strong>representing numbers physically so calculations can
+be performed systematically.</strong>
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. Charles Babbage and the Analytical Engine</h3>
+
+<p>
+Charles Babbage designed mechanical calculating machines during
+the nineteenth century.
+</p>
+
+<p>
+His proposed <strong>Analytical Engine</strong> is historically
+important because its design contained concepts resembling
+modern computers:
+</p>
+
+<ul>
+
+<li>A processing mechanism.</li>
+<li>A memory mechanism.</li>
+<li>Input through punched cards.</li>
+<li>Output mechanisms.</li>
+<li>Programmable operations.</li>
+
+</ul>
+
+<p>
+Because of these ideas, Babbage is commonly called the
+<strong>Father of the Computer</strong>.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. Ada Lovelace</h3>
+
+<p>
+Ada Lovelace worked with Babbage's Analytical Engine and described
+a method for calculating Bernoulli numbers.
+</p>
+
+<p>
+She is widely recognized for producing what is often described as
+the first published computer algorithm intended for machine
+execution.
+</p>
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+Lovelace's importance is not simply that she wrote calculations.
+She recognized that a programmable machine could manipulate
+symbols according to rules, suggesting possibilities beyond
+ordinary arithmetic.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>5. Major Electronic Milestones</h3>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Machine / Development</th>
+<th>Importance</th>
+</tr>
+
+<tr>
+<td>ENIAC</td>
+<td>Large-scale electronic general-purpose computing.</td>
+</tr>
+
+<tr>
+<td>EDVAC</td>
+<td>Associated with stored-program computer architecture.</td>
+</tr>
+
+<tr>
+<td>UNIVAC</td>
+<td>Important early commercial computer.</td>
+</tr>
+
+<tr>
+<td>Transistor</td>
+<td>Replaced bulky vacuum tubes in many applications.</td>
+</tr>
+
+<tr>
+<td>Integrated Circuit</td>
+<td>Placed multiple electronic components onto a small chip.</td>
+</tr>
+
+<tr>
+<td>Microprocessor</td>
+<td>Placed CPU functionality onto a single integrated circuit.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>6. Computer Generations</h3>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Generation</th>
+<th>Main Technology</th>
+<th>General Characteristics</th>
+</tr>
+
+<tr>
+<td>1st</td>
+<td>Vacuum Tubes</td>
+<td>Very large, hot, expensive, high power consumption.</td>
+</tr>
+
+<tr>
+<td>2nd</td>
+<td>Transistors</td>
+<td>Smaller, faster, more reliable and more efficient.</td>
+</tr>
+
+<tr>
+<td>3rd</td>
+<td>Integrated Circuits</td>
+<td>Greater integration, improved reliability and operating systems.</td>
+</tr>
+
+<tr>
+<td>4th</td>
+<td>Microprocessors</td>
+<td>Personal computers and widespread computing.</td>
+</tr>
+
+<tr>
+<td>5th</td>
+<td>Advanced/AI-oriented systems</td>
+<td>Parallel processing, AI, natural-language systems and advanced architectures.</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>7. Why Did Every Generation Improve?</h3>
+
+<p>
+The evolution of computers can be understood through several
+engineering goals:
+</p>
+
+<ul>
+
+<li>Reduce physical size.</li>
+<li>Increase processing speed.</li>
+<li>Reduce power consumption.</li>
+<li>Increase reliability.</li>
+<li>Increase memory capacity.</li>
+<li>Reduce cost.</li>
+<li>Increase programmability.</li>
+<li>Support more complex applications.</li>
+
+</ul>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+🔴 Vacuum Tubes
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🟠 Transistors
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🟡 ICs
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🟢 Microprocessors
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🔵 Modern Chips
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="remember">
+
+<strong>🧠 Remember</strong>
+
+<p>
+Computer generations represent major technological transitions.
+Do not memorize only the names — understand what engineering
+problem each new technology solved.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+Which technology was associated with first-generation computers?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="true">
+Vacuum Tubes
+</button>
+
+<button class="check-option"
+data-correct="false">
+Transistors
+</button>
+
+<button class="check-option"
+data-correct="false">
+Microprocessors
+</button>
+
+<button class="check-option"
+data-correct="false">
+Cloud Computing
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 3
+======================================================= -->
+
+<section class="lesson" data-lesson="2">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 03
+</div>
+
+<h2>
+💻 Types of Computers
+</h2>
+
+<p>
+Computers are not classified only by size. They can be classified
+according to processing capability, purpose, data representation,
+portability and the environment in which they operate.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. Classification by Processing Capability</h3>
+
+<h4>🚀 Supercomputers</h4>
+
+<p>
+Supercomputers are designed for extremely demanding computational
+workloads such as scientific simulation, climate modelling,
+molecular research and large-scale numerical calculations.
+</p>
+
+<h4>🏢 Mainframe Computers</h4>
+
+<p>
+Mainframes are designed for reliable processing of enormous
+volumes of transactions and data. They are used in environments
+such as banking, insurance and large enterprises.
+</p>
+
+<h4>🖥️ Servers</h4>
+
+<p>
+A server provides services or resources to other computers or
+applications over a network. A server can provide web pages,
+files, databases, authentication or applications.
+</p>
+
+<h4>💻 Personal Computers</h4>
+
+<p>
+Desktops and laptops are general-purpose computers designed for
+individual users.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. Classification by Purpose</h3>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<strong>General-Purpose</strong>
+
+Designed to perform many different types of tasks.
+
+Example: desktop computer.
+
+</div>
+
+<div class="info-box">
+
+<strong>Special-Purpose</strong>
+
+Designed primarily for a specific task or environment.
+
+Example: industrial control system.
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. Classification by Data Representation</h3>
+
+<h4>Analog Computers</h4>
+
+<p>
+Analog systems represent information using continuously varying
+physical quantities.
+</p>
+
+<h4>Digital Computers</h4>
+
+<p>
+Digital computers represent information using discrete values,
+normally binary states represented by bits.
+</p>
+
+<h4>Hybrid Computers</h4>
+
+<p>
+Hybrid systems combine aspects of analog and digital computation
+for specialized applications.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. Modern Embedded Computers</h3>
+
+<p>
+Many computers do not look like traditional computers.
+An <strong>embedded system</strong> is a computing system built
+into a larger product to perform a specific function.
+</p>
+
+<div class="info-grid">
+
+<div class="info-box">
+🚗 Car control systems
+</div>
+
+<div class="info-box">
+🧺 Washing machine controller
+</div>
+
+<div class="info-box">
+🏧 ATM controller
+</div>
+
+<div class="info-box">
+📡 Router
+</div>
+
+<div class="info-box">
+⌚ Smartwatch
+</div>
+
+<div class="info-box">
+🏭 Industrial controller
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+A modern smartphone contains computing resources that would have
+been considered extraordinary by earlier generations. The term
+“computer” therefore refers to a much broader family of systems
+than the desktop PC sitting on a desk.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+Which type of computer is commonly used for extremely demanding
+scientific calculations?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="true">
+Supercomputer
+</button>
+
+<button class="check-option"
+data-correct="false">
+Keyboard
+</button>
+
+<button class="check-option"
+data-correct="false">
+Printer
+</button>
+
+<button class="check-option"
+data-correct="false">
+Mouse
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 4
+======================================================= -->
+
+<section class="lesson" data-lesson="3">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 04
+</div>
+
+<h2>
+🔧 Computer Components
+</h2>
+
+<p>
+A computer is a system of cooperating components. Understanding
+what each component does — and how those components communicate —
+is essential for troubleshooting and advanced computer studies.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. Motherboard</h3>
+
+<p>
+The motherboard is the primary circuit board that provides
+electrical and logical connections between major computer
+components.
+</p>
+
+<p>
+It commonly provides connections for the CPU, memory, storage,
+expansion cards, USB devices and other peripherals.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. CPU</h3>
+
+<p>
+The Central Processing Unit executes instructions and performs
+general-purpose computational work.
+</p>
+
+<p>
+Important CPU concepts include:
+</p>
+
+<ul>
+<li>Control Unit</li>
+<li>Arithmetic Logic Unit</li>
+<li>Registers</li>
+<li>Cache</li>
+<li>Instruction execution</li>
+<li>Multiple cores</li>
+</ul>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. RAM</h3>
+
+<p>
+Random Access Memory provides fast working storage for programs
+and data currently being used by the operating system and
+applications.
+</p>
+
+<p>
+RAM is generally <strong>volatile</strong>, meaning its contents
+are lost when power is removed.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. GPU</h3>
+
+<p>
+A Graphics Processing Unit is specialized for highly parallel
+computations, especially graphics and many workloads involving
+large numbers of similar operations.
+</p>
+
+<p>
+Modern GPUs can also accelerate scientific computing, machine
+learning and other parallel workloads.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>5. Power Supply Unit</h3>
+
+<p>
+The PSU converts incoming electrical power into appropriate
+electrical power for the computer's internal components.
+</p>
+
+<div class="warning">
+
+<strong>⚠️ Important</strong>
+
+<p>
+The PSU is not simply a “battery.” It is a power-conversion and
+distribution component designed to provide suitable electrical
+power to the system.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>6. How Components Work Together</h3>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+📥 Input
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🧠 CPU
+</div>
+
+<div class="arrow">↔</div>
+
+<div class="diagram-box">
+⚡ RAM
+</div>
+
+<div class="arrow">↔</div>
+
+<div class="diagram-box">
+💾 Storage
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+📺 Output
+</div>
+
+</div>
+
+</div>
+
+<p>
+The CPU does not operate in isolation. It repeatedly reads
+instructions and data, performs operations and writes results
+while interacting with memory and input/output systems.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<div class="remember">
+
+<strong>🧠 Remember</strong>
+
+<p>
+A computer's performance is not determined by CPU speed alone.
+CPU architecture, number of cores, cache, RAM capacity and speed,
+storage performance, GPU capability, thermal conditions and
+software all influence real-world performance.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+Which component provides the main physical interconnection between
+many internal computer components?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="false">
+Monitor
+</button>
+
+<button class="check-option"
+data-correct="true">
+Motherboard
+</button>
+
+<button class="check-option"
+data-correct="false">
+Keyboard
+</button>
+
+<button class="check-option"
+data-correct="false">
+Speaker
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 5
+======================================================= -->
+
+<section class="lesson" data-lesson="4">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 05
+</div>
+
+<h2>
+⌨️ Input & Output Devices
+</h2>
+
+<p>
+Input and output devices form the communication boundary between
+a computing system and the physical world.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. Input Devices</h3>
+
+<p>
+An input device captures data or commands and makes them available
+to the computer system.
+</p>
+
+<div class="info-grid">
+
+<div class="info-box">
+⌨️ <strong>Keyboard</strong>
+Converts key presses into electronic input events.
+</div>
+
+<div class="info-box">
+🖱️ <strong>Mouse</strong>
+Provides pointing, selection and interaction.
+</div>
+
+<div class="info-box">
+📷 <strong>Camera</strong>
+Captures visual information.
+</div>
+
+<div class="info-box">
+🎙️ <strong>Microphone</strong>
+Converts sound into an electrical/digital signal.
+</div>
+
+<div class="info-box">
+📄 <strong>Scanner</strong>
+Converts physical documents/images into digital representations.
+</div>
+
+<div class="info-box">
+👆 <strong>Touchscreen</strong>
+Detects touch interactions and also acts as a display.
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. Output Devices</h3>
+
+<p>
+Output devices communicate processed information from the
+computer to the user or another system.
+</p>
+
+<ul>
+
+<li><strong>Monitor:</strong> displays visual information.</li>
+
+<li><strong>Printer:</strong> creates physical output.</li>
+
+<li><strong>Speaker:</strong> produces audio output.</li>
+
+<li><strong>Projector:</strong> projects visual information.</li>
+
+</ul>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. What Happens Inside a Keyboard?</h3>
+
+<p>
+A modern keyboard contains a matrix of electrical contacts.
+When a key is pressed, the keyboard controller detects the
+corresponding electrical state and sends information to the
+computer.
+</p>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+⌨️ Key Press
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+Controller
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+USB / Wireless
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+OS Driver
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+Application
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. Microphone: From Sound to Digital Data</h3>
+
+<p>
+A microphone converts changes in air pressure into an electrical
+signal. In a digital recording system, an analog-to-digital
+converter samples that signal and represents it digitally.
+</p>
+
+<div class="code">
+Sound
+  ↓
+Microphone
+  ↓
+Electrical Signal
+  ↓
+ADC
+  ↓
+Digital Samples
+  ↓
+Computer
+  ↓
+Audio Software
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+The distinction between input and output is based on the
+direction of information relative to the computer system.
+Some devices perform both roles. A touchscreen is a classic
+example: it displays output while simultaneously accepting
+touch input.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+Which device can function as both an input and output device?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="false">
+Printer
+</button>
+
+<button class="check-option"
+data-correct="true">
+Touchscreen
+</button>
+
+<button class="check-option"
+data-correct="false">
+Speaker
+</button>
+
+<button class="check-option"
+data-correct="false">
+Projector
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 6
+======================================================= -->
+
+<section class="lesson" data-lesson="5">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 06
+</div>
+
+<h2>
+🧠 CPU & Processing
+</h2>
+
+<p>
+The CPU is central to general-purpose program execution. This
+lesson explains what happens between receiving an instruction and
+producing its result.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. What is the CPU?</h3>
+
+<p>
+The Central Processing Unit is the processor responsible for
+executing machine instructions and coordinating many computational
+operations.
+</p>
+
+<p>
+It does not simply “do calculations.” It also controls instruction
+execution, moves data, performs logical operations, manages
+register values and interacts with other parts of the system.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. Main Functional Parts</h3>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+<strong>🎛️ Control Unit</strong>
+
+Coordinates instruction execution and control signals.
+
+</div>
+
+<div class="info-box">
+
+<strong>➕ ALU</strong>
+
+Performs arithmetic and logical operations.
+
+</div>
+
+<div class="info-box">
+
+<strong>📌 Registers</strong>
+
+Very small, extremely fast storage locations inside the processor.
+
+</div>
+
+<div class="info-box">
+
+<strong>⚡ Cache</strong>
+
+Fast memory that helps keep frequently needed data and instructions
+close to the CPU.
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. Instruction Cycle</h3>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+📥 FETCH
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+🔎 DECODE
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+⚙️ EXECUTE
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+💾 STORE
+</div>
+
+<div class="arrow">↻</div>
+
+</div>
+
+</div>
+
+<h4>Fetch</h4>
+
+<p>
+The processor obtains the next instruction from memory.
+</p>
+
+<h4>Decode</h4>
+
+<p>
+The instruction is interpreted so the processor knows what operation
+must be performed.
+</p>
+
+<h4>Execute</h4>
+
+<p>
+The required operation is performed.
+</p>
+
+<h4>Store</h4>
+
+<p>
+The resulting value may be written to a register or memory,
+depending on the instruction.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. Example of Program Execution</h3>
+
+<div class="code">
+A = 10
+B = 20
+C = A + B
+</div>
+
+<p>
+At a conceptual level, the processor must execute instructions
+that load values, perform an addition and store the resulting
+value.
+</p>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+10
+</div>
+
+<div class="arrow">+</div>
+
+<div class="diagram-box">
+20
+</div>
+
+<div class="arrow">=</div>
+
+<div class="diagram-box">
+30
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>5. CPU Clock Speed</h3>
+
+<p>
+Clock frequency represents the number of clock cycles per second.
+It is commonly expressed in GHz.
+</p>
+
+<p>
+However, <strong>GHz alone does not determine overall CPU
+performance.</strong>
+</p>
+
+<p>
+Two processors operating at the same frequency can have different
+performance because of differences in architecture, instructions
+per cycle, cache, core count, memory subsystem and workload.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>6. Multiple Cores</h3>
+
+<p>
+A multicore processor contains multiple processing cores in one
+processor package. Different software workloads can use multiple
+cores to perform work concurrently.
+</p>
+
+<p>
+This is different from saying that every application automatically
+becomes twice as fast when the number of cores doubles.
+Software must be capable of effectively using parallel execution.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+Think of a CPU as an extremely fast instruction executor rather
+than a magical “brain.” Programs are translated into instructions
+that the processor architecture can execute.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+Which CPU component primarily performs arithmetic and logical operations?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="false">
+Control Unit
+</button>
+
+<button class="check-option"
+data-correct="true">
+ALU
+</button>
+
+<button class="check-option"
+data-correct="false">
+Power Supply
+</button>
+
+<button class="check-option"
+data-correct="false">
+SSD
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 7
+======================================================= -->
+
+<section class="lesson" data-lesson="6">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 07
+</div>
+
+<h2>
+🧮 Computer Memory
+</h2>
+
+<p>
+Memory is one of the most important concepts in computer
+architecture. This lesson explains the difference between bits,
+bytes, RAM, ROM, cache, registers and virtual memory.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. Bit and Byte</h3>
+
+<p>
+A <strong>bit</strong> is the fundamental binary unit of digital
+information and can represent one of two states, commonly written
+as 0 or 1.
+</p>
+
+<p>
+A <strong>byte</strong> consists of 8 bits.
+</p>
+
+<div class="code">
+1 byte = 8 bits
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. Memory Units</h3>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Unit</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>Bit</td>
+<td>Binary digit</td>
+</tr>
+
+<tr>
+<td>Byte</td>
+<td>8 bits</td>
+</tr>
+
+<tr>
+<td>KB</td>
+<td>Commonly used as approximately 1,000 bytes in storage contexts;
+binary contexts may use KiB = 1,024 bytes.</td>
+</tr>
+
+<tr>
+<td>MB</td>
+<td>Megabyte</td>
+</tr>
+
+<tr>
+<td>GB</td>
+<td>Gigabyte</td>
+</tr>
+
+<tr>
+<td>TB</td>
+<td>Terabyte</td>
+</tr>
+
+</table>
+
+</div>
+
+<p>
+In modern technical usage, it is useful to distinguish decimal
+units such as GB from binary units such as GiB.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. Memory Hierarchy</h3>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+🚀 Registers
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="diagram-box">
+⚡ L1 Cache
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="diagram-box">
+⚡ L2 / L3 Cache
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="diagram-box">
+🧠 RAM
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="diagram-box">
+💾 SSD / HDD
+</div>
+
+</div>
+
+</div>
+
+<p>
+As we move downward, capacity generally increases while access
+speed generally decreases.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. RAM</h3>
+
+<p>
+RAM is working memory. Applications and operating system components
+need working memory because the CPU requires relatively fast access
+to instructions and data currently in use.
+</p>
+
+<div class="example">
+
+<strong>💡 Why does a computer slow down when RAM is insufficient?</strong>
+
+<p>
+When available physical RAM becomes insufficient, an operating
+system may move less-active memory contents to storage. Storage is
+generally much slower than RAM, so heavy memory pressure can cause
+noticeable performance degradation.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>5. ROM</h3>
+
+<p>
+ROM traditionally refers to non-volatile memory used for firmware
+or other persistent information. Modern systems may use forms of
+rewritable non-volatile memory, so “ROM” should not always be
+interpreted literally as permanently unchangeable memory.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>6. Cache Memory</h3>
+
+<p>
+CPU cache is much faster and smaller than main memory. It stores
+data and instructions that are likely to be needed soon.
+</p>
+
+<p>
+The goal is to reduce the time the CPU spends waiting for data.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+Computer memory is not one single technology. A modern system uses
+a hierarchy because extremely fast memory is expensive and limited
+in capacity, while large-capacity storage is slower.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+Which is the smallest basic unit of digital information?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="true">
+Bit
+</button>
+
+<button class="check-option"
+data-correct="false">
+Byte
+</button>
+
+<button class="check-option"
+data-correct="false">
+Megabyte
+</button>
+
+<button class="check-option"
+data-correct="false">
+Gigabyte
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 8
+======================================================= -->
+
+<section class="lesson" data-lesson="7">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 08
+</div>
+
+<h2>
+💾 Storage Devices
+</h2>
+
+<p>
+Memory allows active processing; storage provides persistent
+retention of information. This lesson explains how common storage
+technologies differ.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>1. What is Storage?</h3>
+
+<p>
+Storage is used to retain data even when the computer is powered
+off. Applications, documents, photographs, operating system files
+and databases are commonly stored on non-volatile storage devices.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>2. Hard Disk Drive — HDD</h3>
+
+<p>
+A traditional HDD stores information magnetically on rotating
+platters.
+</p>
+
+<p>
+Major concepts include:
+</p>
+
+<ul>
+
+<li>Magnetic platters</li>
+<li>Spindle</li>
+<li>Read/write heads</li>
+<li>Tracks</li>
+<li>Sectors</li>
+<li>Mechanical movement</li>
+
+</ul>
+
+<p>
+Because HDDs contain moving mechanical components, access time is
+affected by physical movement.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>3. Solid State Drive — SSD</h3>
+
+<p>
+An SSD uses semiconductor flash memory rather than rotating
+magnetic platters.
+</p>
+
+<p>
+It contains flash memory cells, a controller and firmware that
+manage data storage and retrieval.
+</p>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>HDD</th>
+<th>SSD</th>
+</tr>
+
+<tr>
+<td>Storage technology</td>
+<td>Magnetic</td>
+<td>Flash memory</td>
+</tr>
+
+<tr>
+<td>Moving parts</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Typical access speed</td>
+<td>Lower</td>
+<td>Higher</td>
+</tr>
+
+<tr>
+<td>Noise</td>
+<td>Mechanical noise possible</td>
+<td>Silent</td>
+</tr>
+
+<tr>
+<td>Shock resistance</td>
+<td>Generally lower</td>
+<td>Generally higher</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>4. USB Flash Drives</h3>
+
+<p>
+USB flash drives use non-volatile flash memory and a USB interface
+to provide portable storage.
+</p>
+
+<p>
+They are useful for transferring files, but they should not be
+treated as a substitute for a proper backup strategy.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>5. Cloud Storage</h3>
+
+<p>
+Cloud storage means storing data on remote infrastructure accessed
+through a network.
+</p>
+
+<p>
+The data may physically reside in data centers rather than
+“inside the internet.”
+</p>
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+Cloud storage is still physical storage. The important difference
+is that the storage infrastructure is operated remotely and
+accessed through a network.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>6. Backup vs Storage</h3>
+
+<div class="warning">
+
+<strong>⚠️ Important distinction</strong>
+
+<p>
+Having a file stored in one location does not necessarily mean it
+is backed up. A backup is an additional copy maintained so that
+data can be recovered after accidental deletion, hardware failure,
+corruption or another incident.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Quick Check</h3>
+
+<div class="check-question">
+Which storage technology has no rotating magnetic platters?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="true">
+SSD
+</button>
+
+<button class="check-option"
+data-correct="false">
+HDD
+</button>
+
+<button class="check-option"
+data-correct="false">
+Floppy disk
+</button>
+
+<button class="check-option"
+data-correct="false">
+Magnetic tape
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-primary next-btn">
+Next Lesson →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     LESSON 9
+======================================================= -->
+
+<section class="lesson" data-lesson="8">
+
+<div class="lesson-heading">
+
+<div class="lesson-number">
+Module 01 • Lesson 09
+</div>
+
+<h2>
+🌍 Uses of Computers
+</h2>
+
+<p>
+Computing is no longer limited to offices and laboratories.
+Computers are embedded into almost every major sector of modern
+society.
+</p>
+
+</div>
+
+<div class="lesson-body">
+
+<div class="section">
+
+<h3>🏫 1. Education</h3>
+
+<p>
+Computers support digital classrooms, learning management systems,
+online assessments, simulations, programming, research, multimedia
+content and remote education.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🏥 2. Healthcare</h3>
+
+<div class="diagram">
+
+<div class="diagram-row">
+
+<div class="diagram-box">
+Patient
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+Registration
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+Digital Records
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+Doctor
+</div>
+
+<div class="arrow">→</div>
+
+<div class="diagram-box">
+Treatment
+</div>
+
+</div>
+
+</div>
+
+<p>
+Healthcare organizations use computing systems for electronic
+records, laboratory systems, medical imaging, hospital management,
+telemedicine and research.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🏦 3. Banking & Finance</h3>
+
+<p>
+Computers support transaction processing, account management,
+electronic payments, fraud detection, risk analysis, financial
+modelling and online banking.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🏢 4. Business</h3>
+
+<p>
+Businesses use information systems for accounting, payroll,
+inventory, customer relationship management, communication,
+analytics and decision support.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🏗️ 5. Engineering</h3>
+
+<p>
+Engineers use computers for CAD, simulation, structural analysis,
+automation, embedded systems, numerical calculations and
+computer-aided manufacturing.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🔬 6. Science & Research</h3>
+
+<p>
+Scientific computing allows researchers to process datasets,
+simulate complex systems, analyze experiments and run models that
+would be impractical to perform manually.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🏭 7. Automation & Manufacturing</h3>
+
+<p>
+Industrial computers can monitor sensors, control machinery,
+coordinate production processes and detect faults.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🤖 8. Artificial Intelligence</h3>
+
+<p>
+Modern computers can execute machine-learning models that identify
+patterns in large datasets, generate predictions, classify objects,
+process language and support decision-making.
+</p>
+
+<p>
+AI does not eliminate the importance of fundamental computing.
+AI systems still depend on processors, memory, storage, networking,
+software and data.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🌐 9. Communication</h3>
+
+<p>
+Computers enable email, messaging, video conferencing, social
+platforms, websites, cloud collaboration and digital publishing.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h3>🎬 10. Entertainment</h3>
+
+<p>
+Computing powers games, video streaming, digital photography,
+music production, animation, visual effects and content creation.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<div class="teacher">
+
+<strong>👨‍🏫 Teacher's Insight</strong>
+
+<p>
+The most important lesson is that computing is not a single
+industry. It is a general-purpose technology that becomes part of
+other industries. This is why computer fundamentals remain useful
+even when the student's future career is in banking, healthcare,
+education, engineering or business.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="remember">
+
+<strong>🧠 Module 01 Complete — What You Should Now Understand</strong>
+
+<ul>
+
+<li>What a computer is and how it processes information.</li>
+
+<li>The difference between data and information.</li>
+
+<li>The role of hardware, software and firmware.</li>
+
+<li>Major stages in computer history.</li>
+
+<li>Computer generations and their technologies.</li>
+
+<li>Different classifications of computers.</li>
+
+<li>Major internal components.</li>
+
+<li>Input and output mechanisms.</li>
+
+<li>CPU architecture and instruction execution.</li>
+
+<li>Memory hierarchy.</li>
+
+<li>Storage technologies.</li>
+
+<li>Real-world applications of computing.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div class="checkpoint">
+
+<h3>❓ Final Knowledge Check</h3>
+
+<div class="check-question">
+Which statement best describes a computer?
+</div>
+
+<div class="check-options">
+
+<button class="check-option"
+data-correct="false">
+Only a machine for calculations
+</button>
+
+<button class="check-option"
+data-correct="false">
+Only an internet device
+</button>
+
+<button class="check-option"
+data-correct="true">
+A programmable system that processes data according to instructions
+</button>
+
+<button class="check-option"
+data-correct="false">
+Only a storage device
+</button>
+
+</div>
+
+<div class="check-result"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-footer">
+
+<button class="btn btn-secondary prev-btn">
+← Previous
+</button>
+
+<button class="btn btn-test" id="startTestBottom">📝 Start Module Test</button>
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =======================================================
+     TEST OVERLAY
+======================================================= -->
+
+<div class="test-overlay" id="testOverlay">
+
+<div class="test-topbar">
+
+<div class="test-brand">
+❤️ ADCA • Module 01 Assessment
+</div>
+
+<div id="questionTimer" class="question-timer">⏱️ 10s</div>
+
+<div class="test-status" id="securityStatus">🛡️ Advanced Secure Mode</div>
+
+</div>
+
+
+<div class="test-main">
+
+<div class="test-question-number"
+id="testQuestionNumber">
+Question 1 of 20
+</div>
+
+<div class="test-question"
+id="testQuestion">
+Loading...
+</div>
+
+<div class="test-options"
+id="testOptions">
+</div>
+
+</div>
+
+
+<div class="test-bottom">
+
+<div class="test-progress">
+
+<div
+class="test-progress-bar"
+id="testProgressBar">
+</div>
+
+</div>
+
+<div class="test-nav">
+
+<button
+class="btn btn-secondary"
+id="prevQuestion">
+← Previous
+</button>
+
+<button
+class="btn btn-primary"
+id="nextQuestion">
+Next →
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     WARNING MODAL
+======================================================= -->
+
+<div class="warning-modal" id="warningModal">
+
+<div class="warning-card">
+
+<div class="warning-icon">
+🚨
+</div>
+
+<h2>
+Security Warning
+</h2>
+
+<p id="warningMessage">
+Please remain inside the assessment window.
+</p>
+
+<p style="margin-top:10px">
+
+Violation:
+<span
+class="warning-count"
+id="warningCount">
+1 / 3
+</span>
+
+</p>
+
+<button
+class="btn btn-primary"
+id="warningButton"
+style="margin-top:20px;">
+I Understand
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     RESULT MODAL
+======================================================= -->
+
+<div class="result-overlay" id="resultOverlay">
+
+<div class="result-card">
+
+<div class="result-message">
+
+<h2>
+🏆 Assessment Result
+</h2>
+
+<div class="score-circle">
+
+<strong id="scoreNumber">
+0%
+</strong>
+
+<span id="scoreText">
+0 / 20
+</span>
+
+</div>
+
+<h3 id="resultTitle">
+Assessment Complete
+</h3>
+
+<p id="resultDescription">
+</p>
+
+</div>
+
+<div class="answer-review">
+
+<h3>
+📋 Answer Review
+</h3>
+
+<div id="answerReview">
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:25px;">
+
+<button
+class="btn btn-primary"
+id="closeResult">
+Close Result
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   MODULE DATA
+========================================================= */
+
+const lessons = [
+    "Introduction to Computers",
+    "History & Generations",
+    "Types of Computers",
+    "Computer Components",
+    "Input & Output Devices",
+    "CPU & Processing",
+    "Computer Memory",
+    "Storage Devices",
+    "Uses of Computers"
+];
+
+let currentLesson = 0;
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const lessonElements =
+    document.querySelectorAll(".lesson");
+
+const lessonTabs =
+    document.getElementById("lessonTabs");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const progressText =
+    document.getElementById("progressText");
+
+const progressPercent =
+    document.getElementById("progressPercent");
+
+
+/* =========================================================
+   CREATE LESSON TABS
+========================================================= */
+
+lessons.forEach((lesson,index)=>{
+
+    const button =
+        document.createElement("button");
+
+    button.className =
+        "lesson-tab";
+
+    button.innerHTML =
+        `${index+1}. ${lesson}`;
+
+    button.addEventListener("click",()=>{
+
+        if(index <= currentLesson){
+
+            currentLesson = index;
+            showLesson();
+
+        }
+
+    });
+
+    lessonTabs.appendChild(button);
+
+});
+
+
+const tabElements =
+    document.querySelectorAll(".lesson-tab");
+
+
+/* =========================================================
+   SHOW LESSON
+========================================================= */
+
+function showLesson(){
+
+    lessonElements.forEach((lesson,index)=>{
+
+        lesson.classList.toggle(
+            "active",
+            index === currentLesson
+        );
+
+    });
+
+    tabElements.forEach((tab,index)=>{
+
+        tab.classList.toggle(
+            "active",
+            index === currentLesson
+        );
+
+        if(index < currentLesson){
+
+            tab.classList.add("completed");
+
+        }else{
+
+            tab.classList.remove("completed");
+
+        }
+
+    });
+
+    const percentage =
+        Math.round(
+            ((currentLesson+1)/lessons.length)*100
+        );
+
+    progressBar.style.width =
+        percentage + "%";
+
+    progressText.textContent =
+        `Lesson ${currentLesson+1} of ${lessons.length}`;
+
+    progressPercent.textContent =
+        percentage + "%";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   NEXT / PREVIOUS
+========================================================= */
+
+document.querySelectorAll(".next-btn")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        if(currentLesson < lessons.length-1){
+
+            currentLesson++;
+            showLesson();
+
+        }
+
+    });
+
+});
+
+
+document.querySelectorAll(".prev-btn")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        if(currentLesson > 0){
+
+            currentLesson--;
+            showLesson();
+
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   QUICK CHECKS
+========================================================= */
+
+document.querySelectorAll(".checkpoint")
+.forEach(checkpoint=>{
+
+    const options =
+        checkpoint.querySelectorAll(".check-option");
+
+    const result =
+        checkpoint.querySelector(".check-result");
+
+    options.forEach(option=>{
+
+        option.addEventListener("click",()=>{
+
+            options.forEach(o=>{
+                o.classList.remove(
+                    "correct",
+                    "wrong"
+                );
+            });
+
+            const correct =
+                option.dataset.correct === "true";
+
+            if(correct){
+
+                option.classList.add("correct");
+
+                result.textContent =
+                    "✅ Correct! Excellent.";
+
+                result.style.color =
+                    "#269253";
+
+            }else{
+
+                option.classList.add("wrong");
+
+                result.textContent =
+                    "❌ Not quite. Review the explanation above.";
+
+                result.style.color =
+                    "#c93655";
+
+            }
+
+        });
+
+    });
+
+});
+
+
+/* =========================================================
+   TEST QUESTIONS
+========================================================= */
+
+const QUESTION_BANK = [
+
+/* =========================================================
+   QUESTION BANK
+   30 questions are available.
+   Each attempt randomly selects 15 questions and
+   randomizes the option order.
+========================================================= */
+
+{
+q:"Which sequence best represents the basic information-processing cycle?",
+o:["Input → Process → Output","Output → Process → Input","Storage → Input → Monitor","CPU → Keyboard → Printer"],
+a:0
+},
+{
+q:"What makes a computer different from a simple electronic calculator?",
+o:["It is programmable and can execute different sets of instructions","It can only perform addition","It never needs electricity","It cannot store data"],
+a:0
+},
+{
+q:"Which statement best distinguishes data from information?",
+o:["Data is raw facts; information is processed and meaningful data","Data is always digital; information is always analog","Data is hardware; information is software","There is no difference"],
+a:0
+},
+{
+q:"Which component is primarily responsible for executing machine instructions?",
+o:["CPU","Monitor","Keyboard","Printer"],
+a:0
+},
+{
+q:"Which CPU unit performs arithmetic and logical operations?",
+o:["ALU","Control Unit","Power Supply","Storage Controller"],
+a:0
+},
+{
+q:"Which CPU feature stores small values needed immediately during instruction execution?",
+o:["Registers","Hard disk","Printer buffer","Monitor memory"],
+a:0
+},
+{
+q:"What is the primary role of the Control Unit?",
+o:["Direct and coordinate instruction execution","Store files permanently","Produce printed output","Convert AC power to DC power"],
+a:0
+},
+{
+q:"What does CPU clock frequency primarily indicate?",
+o:["The number of clock cycles per second","The total storage capacity","The amount of RAM installed","The number of programs on the computer"],
+a:0
+},
+{
+q:"Which technology was mainly used in first-generation electronic computers?",
+o:["Vacuum tubes","Transistors","Integrated circuits","Microprocessors"],
+a:0
+},
+{
+q:"Which technology is associated with second-generation computers?",
+o:["Transistors","Vacuum tubes","Microprocessors","Cloud computing"],
+a:0
+},
+{
+q:"Which technology is associated with third-generation computers?",
+o:["Integrated circuits","Vacuum tubes","Magnetic tape only","Mechanical gears"],
+a:0
+},
+{
+q:"Which technology is associated with fourth-generation computers?",
+o:["Microprocessors","Vacuum tubes","Abacus beads","Relays only"],
+a:0
+},
+{
+q:"Why are computer generations important to study?",
+o:["They show major technological improvements in computing","They classify only computer brands","They describe keyboard layouts","They measure internet speed"],
+a:0
+},
+{
+q:"Which historical machine is strongly associated with Charles Babbage?",
+o:["Analytical Engine","ENIAC II","UNIVAC 9000","IBM PC"],
+a:0
+},
+{
+q:"Why is Ada Lovelace historically important in computing?",
+o:["She described an algorithm intended for execution by the Analytical Engine","She invented the transistor","She designed the first SSD","She created the modern Internet"],
+a:0
+},
+{
+q:"Which computer is designed for extremely demanding scientific and numerical workloads?",
+o:["Supercomputer","Tablet","Printer","Keyboard"],
+a:0
+},
+{
+q:"What is a mainframe primarily designed to handle?",
+o:["Large-scale reliable transaction and data processing","Only gaming graphics","Only personal photography","Only keyboard input"],
+a:0
+},
+{
+q:"What is the main purpose of a server?",
+o:["Provide services or resources to other systems over a network","Act only as a monitor","Replace all input devices","Store electricity"],
+a:0
+},
+{
+q:"What is an embedded system?",
+o:["A computing system built into a larger product for a specific function","A computer that must always be a desktop PC","A paper-based filing system","A computer with no processor"],
+a:0
+},
+{
+q:"Which is a typical example of an embedded computing system?",
+o:["Washing machine controller","Paper notebook","Mechanical pencil","Wooden table"],
+a:0
+},
+{
+q:"Which component provides major physical and electrical interconnections among internal computer components?",
+o:["Motherboard","Monitor","Mouse","Speaker"],
+a:0
+},
+{
+q:"Which memory is normally volatile?",
+o:["RAM","SSD","HDD","Optical disc"],
+a:0
+},
+{
+q:"Why is RAM important while a computer is running?",
+o:["It provides fast working storage for active programs and data","It permanently stores files without power","It displays images","It converts electrical power"],
+a:0
+},
+{
+q:"Which memory is generally fastest and located closest to the CPU for immediate access?",
+o:["CPU registers","External hard disk","USB flash drive","Optical disc"],
+a:0
+},
+{
+q:"What is the main purpose of CPU cache?",
+o:["Provide very fast access to frequently needed data and instructions","Store the operating system permanently","Print documents","Supply power to the motherboard"],
+a:0
+},
+{
+q:"Which device normally uses flash memory rather than rotating magnetic platters?",
+o:["SSD","Traditional HDD","Magnetic tape drive","Floppy disk"],
+a:0
+},
+{
+q:"What is the main purpose of persistent storage?",
+o:["Retain data when electrical power is removed","Perform arithmetic operations","Display pixels","Detect keyboard presses"],
+a:0
+},
+{
+q:"Which device is primarily an output device?",
+o:["Monitor","Keyboard","Scanner","Microphone"],
+a:0
+},
+{
+q:"Which device can function as both an input and output device?",
+o:["Touchscreen","Speaker","Projector","Traditional printer"],
+a:0
+},
+{
+q:"What is the fundamental binary unit of digital information?",
+o:["Bit","Byte","Kilobyte","Gigabyte"],
+a:0
+},
+{
+q:"Which device converts a physical document into a digital representation?",
+o:["Scanner","Speaker","Projector","Power supply"],
+a:0
+},
+{
+q:"Which statement best describes a digital computer?",
+o:["It represents and processes information using discrete values, commonly binary","It can process only physical measurements","It cannot store data","It must use vacuum tubes"],
+a:0
+},
+{
+q:"What is the role of firmware in a computer system?",
+o:["Low-level software stored in hardware that helps initialize or control the device","A type of printer paper","A permanent electrical battery","A programming language used only for websites"],
+a:0
+},
+{
+q:"Which component converts incoming electrical power into suitable power for computer components?",
+o:["Power Supply Unit","CPU","RAM","GPU"],
+a:0
+},
+{
+q:"Why does a computer not automatically produce a correct result every time?",
+o:["Incorrect input, algorithms, programs or system conditions can produce incorrect results","Computers intentionally change answers randomly","CPU always ignores instructions","RAM always deletes calculations"],
+a:0
+},
+{
+q:"Which statement about computer performance is most accurate?",
+o:["Performance depends on multiple factors, not CPU clock speed alone","CPU clock speed alone determines everything","RAM has no effect on performance","Storage speed never matters"],
+a:0
+},
+{
+q:"Which sequence best describes how a user action can reach hardware?",
+o:["User → Application → Operating System → Hardware","Hardware → User → Application → Keyboard","Printer → User → CPU → Internet","RAM → User → Monitor → BIOS"],
+a:0
+},
+{
+q:"Which technology placed CPU functionality onto a single integrated circuit?",
+o:["Microprocessor","Vacuum tube","Keyboard matrix","CRT"],
+a:0
+},
+{
+q:"Which statement best describes cloud storage?",
+o:["Remote storage infrastructure accessed through a network","Data stored only inside CPU registers","A type of processor cache","A physical keyboard technology"],
+a:0
+},
+{
+q:"Which is an example of a general-purpose computer?",
+o:["Desktop PC","Digital thermostat controller","Washing machine controller","Single-purpose industrial sensor"],
+a:0
+},
+{
+q:"Which is a major advantage of computers in repetitive tasks?",
+o:["They can perform programmed operations consistently without becoming physically tired","They always understand human emotions","They never require instructions","They can operate without electricity"],
+a:0
+}
+
+];
+
+
+/* =========================================================
+   FINAL TEST ENGINE — ONE IMPLEMENTATION ONLY
+========================================================= */
+
+const TEST_SIZE=20;
+const QUESTION_TIME=10;
+const MAX_VIOLATIONS=3;
+const DEVTOOLS_THRESHOLD=160;
+const DEVTOOLS_CONFIRMATIONS=3;
+const VIOLATION_COOLDOWN=1200;
+
+let questions=[];
+let testQuestion=0;
+let answers=[];
+let warningCount=0;
+let testStarted=false;
+let testFinalized=false;
+let warningOpen=false;
+
+let questionTimeLeft=QUESTION_TIME;
+let questionTimerInterval=null;
+
+let devtoolsSuspicion=0;
+let securityMonitor=null;
+let lastFocusLossAt=0;
+let lastViolationAt=0;
+
+const securityState={
+    tabSwitches:0,
+    fullscreenExits:0,
+    focusLosses:0,
+    blockedActions:0
+};
+
+const testOverlay=document.getElementById("testOverlay");
+const testQuestionNumber=document.getElementById("testQuestionNumber");
+const testQuestionText=document.getElementById("testQuestion");
+const testOptions=document.getElementById("testOptions");
+const testProgressBar=document.getElementById("testProgressBar");
+const questionTimer=document.getElementById("questionTimer");
+const prevQuestion=document.getElementById("prevQuestion");
+const nextQuestion=document.getElementById("nextQuestion");
+
+function shuffleArray(array){
+    const copy=[...array];
+    for(let i=copy.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [copy[i],copy[j]]=[copy[j],copy[i]];
+    }
+    return copy;
+}
+
+function createFreshQuestionSet(){
+    return shuffleArray(QUESTION_BANK)
+        .slice(0,Math.min(TEST_SIZE,QUESTION_BANK.length))
+        .map(question=>{
+            const correctText=question.o[question.a];
+            const randomizedOptions=shuffleArray(question.o);
+            return {
+                q:question.q,
+                o:randomizedOptions,
+                a:randomizedOptions.indexOf(correctText)
+            };
+        });
+}
+
+function updateSecurityStatus(){
+    const node=document.getElementById("securityStatus");
+    if(node){
+        const left=Math.max(0,MAX_VIOLATIONS-warningCount);
+        node.textContent=`🛡️ Secure Mode • ${left} warning${left===1?"":"s"} left`;
+    }
+}
+
+function updateTimer(){
+    if(questionTimer) questionTimer.textContent=`⏱️ ${questionTimeLeft}s`;
+}
+
+function stopQuestionTimer(){
+    if(questionTimerInterval!==null){
+        clearInterval(questionTimerInterval);
+        questionTimerInterval=null;
+    }
+}
+
+function startQuestionTimer(){
+    stopQuestionTimer();
+
+    questionTimeLeft=QUESTION_TIME;
+    updateTimer();
+
+    questionTimerInterval=setInterval(()=>{
+        if(!testStarted||testFinalized||warningOpen)return;
+
+        questionTimeLeft--;
+        updateTimer();
+
+        if(questionTimeLeft<=0){
+            stopQuestionTimer();
+
+            if(testQuestion<questions.length-1){
+                testQuestion++;
+                renderQuestion(true);
+            }else{
+                finalizeTest("time-limit");
+            }
+        }
+    },1000);
+}
+
+function saveTestState(){
+    try{
+        localStorage.setItem("adca_module01_answers",JSON.stringify(answers));
+        localStorage.setItem("adca_module01_current",String(testQuestion));
+    }catch(e){}
+}
+
+function renderQuestion(resetTimer=true){
+    if(!questions.length)return;
+
+    const q=questions[testQuestion];
+
+    if(testQuestionNumber)
+        testQuestionNumber.textContent=`Question ${testQuestion+1} of ${questions.length}`;
+
+    if(testQuestionText)
+        testQuestionText.textContent=q.q;
+
+    if(!testOptions)return;
+
+    testOptions.innerHTML="";
+
+    q.o.forEach((option,index)=>{
+        const button=document.createElement("button");
+        button.type="button";
+        button.className="test-option";
+        button.textContent=option;
+
+        if(answers[testQuestion]===index)
+            button.classList.add("selected");
+
+        button.addEventListener("click",()=>{
+            if(!testStarted||testFinalized||warningOpen)return;
+
+            answers[testQuestion]=index;
+            saveTestState();
+
+            [...testOptions.children]
+                .forEach(item=>item.classList.remove("selected"));
+
+            button.classList.add("selected");
+        });
+
+        testOptions.appendChild(button);
+    });
+
+    if(testProgressBar)
+        testProgressBar.style.width=
+            `${((testQuestion+1)/questions.length)*100}%`;
+
+    if(prevQuestion)
+        prevQuestion.disabled=(testQuestion===0);
+
+    if(nextQuestion)
+        nextQuestion.textContent=
+            testQuestion===questions.length-1
+            ? "Submit Test ✓"
+            : "Next →";
+
+    if(resetTimer)startQuestionTimer();
+    else updateTimer();
+}
+
+function nextTestQuestion(){
+    if(!testStarted||testFinalized||warningOpen)return;
+
+    if(testQuestion<questions.length-1){
+        testQuestion++;
+        renderQuestion(true);
+    }else{
+        finalizeTest("manual-submit");
+    }
+}
+
+function previousTestQuestion(){
+    if(!testStarted||testFinalized||warningOpen)return;
+
+    if(testQuestion>0){
+        testQuestion--;
+        renderQuestion(true);
+    }
+}
+
+async function requestExamFullscreen(){
+    try{
+        if(!document.fullscreenElement &&
+           document.documentElement.requestFullscreen){
+            await document.documentElement.requestFullscreen();
+        }
+    }catch(e){}
+}
+
+async function startTest(){
+    if(testStarted&&!testFinalized)return;
+
+    testStarted=true;
+    testFinalized=false;
+    warningOpen=false;
+
+    testQuestion=0;
+    answers=[];
+    warningCount=0;
+    devtoolsSuspicion=0;
+    lastFocusLossAt=0;
+    lastViolationAt=0;
+
+    securityState.tabSwitches=0;
+    securityState.fullscreenExits=0;
+    securityState.focusLosses=0;
+    securityState.blockedActions=0;
+
+    questions=createFreshQuestionSet();
+
+    if(testOverlay)testOverlay.classList.add("active");
+
+    updateSecurityStatus();
+    renderQuestion(true);
+    startSecurityMonitoring();
+    await requestExamFullscreen();
+}
+
+function showWarning(type){
+    const messages={
+        tab:"Leaving the exam tab or window is not allowed.",
+        fullscreen:"Fullscreen mode was exited.",
+        focus:"The exam window lost focus.",
+        shortcut:"A restricted keyboard shortcut was detected.",
+        "context-menu":"Right-click is disabled during the exam.",
+        copy:"Copy is disabled during the exam.",
+        cut:"Cut is disabled during the exam.",
+        paste:"Paste is disabled during the exam.",
+        devtools:"Developer-tools activity was detected.",
+        print:"Printing is disabled during the exam.",
+        drag:"Dragging content is disabled during the exam.",
+        drop:"Dropping content is disabled during the exam.",
+        "new-window":"A secondary/middle-click action was blocked."
+    };
+
+    const modal=document.getElementById("warningModal");
+    const message=document.getElementById("warningMessage");
+    const count=document.getElementById("warningCount");
+
+    if(message)message.textContent=messages[type]||"A restricted action was detected.";
+    if(count)count.textContent=`Warning ${warningCount} of ${MAX_VIOLATIONS}`;
+
+    if(modal)modal.classList.add("active");
+
+    warningOpen=true;
+    stopQuestionTimer();
+}
+
+function closeWarning(){
+    warningOpen=false;
+
+    const modal=document.getElementById("warningModal");
+    if(modal)modal.classList.remove("active");
+
+    if(testStarted&&!testFinalized){
+        startQuestionTimer();
+        requestExamFullscreen();
+    }
+}
+
+function registerViolation(type){
+    if(!testStarted||testFinalized||warningOpen)return;
+
+    const now=Date.now();
+
+    if(now-lastViolationAt<VIOLATION_COOLDOWN)return;
+
+    lastViolationAt=now;
+
+    if(type==="tab")securityState.tabSwitches++;
+    if(type==="fullscreen")securityState.fullscreenExits++;
+    if(type==="focus")securityState.focusLosses++;
+
+    if([
+        "shortcut","context-menu","copy","cut","paste",
+        "devtools","print","drag","drop","new-window"
+    ].includes(type)){
+        securityState.blockedActions++;
+    }
+
+    warningCount++;
+    updateSecurityStatus();
+
+    if(warningCount>=MAX_VIOLATIONS){
+        finalizeTest("security-limit");
+        return;
+    }
+
+    showWarning(type);
+}
+
+function inspectDevTools(){
+    if(!testStarted||testFinalized||warningOpen)return;
+
+    const widthGap=Math.abs(window.outerWidth-window.innerWidth);
+    const heightGap=Math.abs(window.outerHeight-window.innerHeight);
+
+    const suspicious=
+        widthGap>DEVTOOLS_THRESHOLD ||
+        heightGap>DEVTOOLS_THRESHOLD;
+
+    devtoolsSuspicion=suspicious
+        ?devtoolsSuspicion+1
+        :Math.max(0,devtoolsSuspicion-1);
+
+    if(devtoolsSuspicion>=DEVTOOLS_CONFIRMATIONS){
+        devtoolsSuspicion=0;
+        registerViolation("devtools");
+    }
+}
+
+function handleFocusLoss(){
+    if(!testStarted||testFinalized||warningOpen)return;
+
+    const now=Date.now();
+
+    if(now-lastFocusLossAt<VIOLATION_COOLDOWN)return;
+
+    lastFocusLossAt=now;
+    registerViolation("focus");
+}
+
+function startSecurityMonitoring(){
+    stopSecurityMonitoring();
+
+    securityMonitor=setInterval(()=>{
+        if(!testStarted||testFinalized)return;
+
+        inspectDevTools();
+
+        if(!document.hidden&&!document.hasFocus()){
+            handleFocusLoss();
+        }
+    },1000);
+}
+
+function stopSecurityMonitoring(){
+    if(securityMonitor!==null){
+        clearInterval(securityMonitor);
+        securityMonitor=null;
+    }
+}
+
+function showResult(result){
+    const overlay=document.getElementById("resultOverlay");
+    if(!overlay)return;
+
+    const score=document.getElementById("scoreNumber");
+    const scoreText=document.getElementById("scoreText");
+    const review=document.getElementById("answerReview");
+
+    if(score)score.textContent=result.score;
+    if(scoreText)scoreText.textContent=
+        `${result.score} / ${result.total} • ${result.percentage}%`;
+
+    if(review){
+        review.innerHTML="";
+
+        result.questions.forEach((q,index)=>{
+            const correct=result.answers[index]===q.a;
+            const item=document.createElement("div");
+
+            item.className=
+                `review-item ${correct?"review-correct":"review-wrong"}`;
+
+            const given=result.answers[index];
+
+            item.innerHTML=`
+                <strong>${index+1}. ${q.q}</strong><br>
+                Your answer:
+                ${given==null?"<em>Not answered</em>":q.o[given]}<br>
+                Correct answer: ${q.o[q.a]}
+            `;
+
+            review.appendChild(item);
+        });
+    }
+
+    overlay.classList.add("active");
+}
+
+function finalizeTest(reason="manual-submit"){
+    if(testFinalized)return;
+
+    testFinalized=true;
+    testStarted=false;
+
+    stopQuestionTimer();
+    stopSecurityMonitoring();
+
+    let correct=0;
+
+    questions.forEach((q,index)=>{
+        if(answers[index]===q.a)correct++;
+    });
+
+    const result={
+        module:"ADCA Module 01",
+        institute:"Faiz Computer Center",
+        score:correct,
+        total:questions.length,
+        percentage:Math.round(correct/questions.length*100),
+        reason:reason,
+        answers:[...answers],
+        questions:questions.map(q=>({
+            q:q.q,o:q.o,a:q.a
+        })),
+        security:{...securityState},
+        completedAt:new Date().toISOString()
+    };
+
+    try{
+        localStorage.setItem(
+            "adca_module01_result",
+            JSON.stringify(result)
+        );
+    }catch(e){}
+
+    if(testOverlay)testOverlay.classList.remove("active");
+
+    const modal=document.getElementById("warningModal");
+    if(modal)modal.classList.remove("active");
+
+    if(document.fullscreenElement){
+        document.exitFullscreen().catch(()=>{});
+    }
+
+    showResult(result);
+}
+
+/* =========================================================
+   ADVANCED ANTI-CHEAT — ONE SET OF LISTENERS
+========================================================= */
+
+window.addEventListener("blur",handleFocusLoss);
+
+document.addEventListener("visibilitychange",()=>{
+    if(document.hidden&&testStarted&&!testFinalized){
+        registerViolation("tab");
+    }
+},true);
+
+document.addEventListener("fullscreenchange",()=>{
+    if(testStarted&&!testFinalized&&!warningOpen&&!document.fullscreenElement){
+        registerViolation("fullscreen");
+    }
+},true);
+
+document.addEventListener("keydown",event=>{
+    if(!testStarted||testFinalized)return;
+
+    const key=event.key.toLowerCase();
+    const ctrl=event.ctrlKey||event.metaKey;
+
+    const blocked=
+        key==="f11"||
+        key==="f12"||
+        (ctrl&&["u","s","p","c","x","v","a"].includes(key))||
+        (event.ctrlKey&&event.shiftKey&&["i","j","c"].includes(key));
+
+    if(blocked){
+        event.preventDefault();
+        event.stopPropagation();
+        registerViolation("shortcut");
+    }
+},true);
+
+document.addEventListener("contextmenu",event=>{
+    if(testStarted&&!testFinalized){
+        event.preventDefault();
+        registerViolation("context-menu");
+    }
+},true);
+
+["copy","cut","paste"].forEach(type=>{
+    document.addEventListener(type,event=>{
+        if(testStarted&&!testFinalized){
+            event.preventDefault();
+            registerViolation(type);
+        }
+    },true);
+});
+
+["dragstart","drop"].forEach(type=>{
+    document.addEventListener(type,event=>{
+        if(testStarted&&!testFinalized){
+            event.preventDefault();
+            registerViolation(type);
+        }
+    },true);
+});
+
+document.addEventListener("auxclick",event=>{
+    if(testStarted&&!testFinalized&&event.button!==0){
+        event.preventDefault();
+        registerViolation("new-window");
+    }
+},true);
+
+window.addEventListener("beforeprint",()=>{
+    if(testStarted&&!testFinalized){
+        registerViolation("print");
+    }
+},true);
+
+/* =========================================================
+   BUTTON WIRING — ORIGINAL IDs
+========================================================= */
+
+const startTestButton=document.getElementById("startTestBottom");
+if(startTestButton){
+    startTestButton.addEventListener("click",startTest);
+}
+
+if(prevQuestion){
+    prevQuestion.addEventListener("click",previousTestQuestion);
+}
+
+if(nextQuestion){
+    nextQuestion.addEventListener("click",nextTestQuestion);
+}
+
+const warningButton=document.getElementById("warningButton");
+if(warningButton){
+    warningButton.addEventListener("click",closeWarning);
+}
+
+const closeResult=document.getElementById("closeResult");
+if(closeResult){
+    closeResult.addEventListener("click",()=>{
+        const overlay=document.getElementById("resultOverlay");
+        if(overlay)overlay.classList.remove("active");
+    });
+}
+
+</script>
+
+</body>
+</html>

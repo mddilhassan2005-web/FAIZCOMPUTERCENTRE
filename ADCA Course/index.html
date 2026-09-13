@@ -1,0 +1,4434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ADCA | 12 Month Advanced Diploma in Computer Applications</title>
+
+<style>
+
+/* =========================================================
+   ADCA 12 MONTH — DESIGN SYSTEM
+========================================================= */
+
+:root{
+
+    --pink:#ff1493;
+    --pink2:#ff4da6;
+    --pink3:#ff86c2;
+
+    --red:#e60045;
+    --red2:#b90036;
+
+    --rose:#fff0f7;
+    --rose2:#ffe0ee;
+    --rose3:#ffc5dc;
+
+    --white:#ffffff;
+
+    --ink:#271421;
+    --text:#432b39;
+    --muted:#806b77;
+
+    --green:#08a66a;
+    --blue:#2376ff;
+    --purple:#7b43e6;
+    --orange:#ff7a00;
+
+    --shadow:
+        0 18px 55px rgba(190,0,75,.13);
+
+    --shadow-hover:
+        0 28px 75px rgba(190,0,75,.21);
+
+    --radius:26px;
+
+    --max:1250px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            #ffd4e8 0,
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 100% 15%,
+            #ffe1ef 0,
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fff7fb 55%,
+            #ffedf5
+        );
+
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+
+/* =========================================================
+   BACKGROUND DECORATIONS
+========================================================= */
+
+.bg-orb{
+
+    position:fixed;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    filter:blur(60px);
+
+    opacity:.16;
+
+    z-index:-2;
+
+    pointer-events:none;
+}
+
+.bg-orb.one{
+    background:#ff1493;
+    left:-170px;
+    top:20%;
+}
+
+.bg-orb.two{
+    background:#e60045;
+    right:-170px;
+    top:60%;
+}
+
+.floating-heart{
+
+    position:fixed;
+
+    color:var(--pink);
+
+    opacity:.08;
+
+    font-size:130px;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    animation:
+        floatingHeart 9s
+        ease-in-out
+        infinite;
+}
+
+.floating-heart.one{
+    left:-30px;
+    top:35%;
+}
+
+.floating-heart.two{
+    right:-30px;
+    top:75%;
+    animation-delay:3s;
+}
+
+@keyframes floatingHeart{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(-10deg);
+    }
+
+    50%{
+        transform:
+            translateY(-35px)
+            rotate(10deg);
+    }
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+
+    width:min(
+        var(--max),
+        92%
+    );
+
+    margin:auto;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    min-height:700px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+
+    padding:
+        90px
+        20px
+        100px;
+
+    overflow:hidden;
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:720px;
+    height:720px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ff149344,
+            transparent 67%
+        );
+
+    top:-390px;
+    left:-250px;
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #e6004538,
+            transparent 67%
+        );
+
+    right:-300px;
+    bottom:-430px;
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:1000px;
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+        11px
+        20px;
+
+    border-radius:50px;
+
+    background:
+        rgba(255,255,255,.85);
+
+    border:
+        1px solid
+        var(--rose3);
+
+    box-shadow:
+        var(--shadow);
+
+    color:var(--red);
+
+    font-weight:800;
+
+    margin-bottom:25px;
+}
+
+.hero h1{
+
+    font-size:
+        clamp(
+            90px,
+            16vw,
+            180px
+        );
+
+    line-height:.82;
+
+    letter-spacing:7px;
+
+    font-weight:1000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0084,
+            #e60045 50%,
+            #ff55a7
+        );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+    filter:
+        drop-shadow(
+            0 15px 25px
+            rgba(230,0,69,.13)
+        );
+}
+
+.hero h2{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    padding:
+        15px
+        32px;
+
+    border-radius:50px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink),
+            var(--red)
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(230,0,69,.25);
+
+    font-size:
+        clamp(
+            18px,
+            3vw,
+            30px
+        );
+}
+
+.hero-description{
+
+    max-width:760px;
+
+    margin:
+        25px
+        auto
+        0;
+
+    color:var(--muted);
+
+    font-size:18px;
+
+    line-height:1.7;
+}
+
+.hero-stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:14px;
+
+    margin-top:40px;
+}
+
+.hero-stat{
+
+    padding:20px 15px;
+
+    background:
+        rgba(255,255,255,.9);
+
+    border:
+        1px solid
+        var(--rose3);
+
+    border-radius:22px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.hero-stat strong{
+
+    display:block;
+
+    color:var(--red);
+
+    font-size:25px;
+
+    margin-bottom:4px;
+}
+
+.hero-stat span{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:45px;
+}
+
+.section-kicker{
+
+    color:var(--pink);
+
+    font-size:13px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+}
+
+.section-title h2{
+
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            52px
+        );
+
+    color:var(--ink);
+
+    margin-top:8px;
+}
+
+.section-title h2 span{
+
+    color:var(--red);
+}
+
+.section-title p{
+
+    margin-top:12px;
+
+    color:var(--muted);
+
+    font-size:16px;
+}
+
+
+/* =========================================================
+   COURSE OVERVIEW
+========================================================= */
+
+.overview{
+
+    padding:
+        30px
+        0
+        70px;
+}
+
+.overview-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+.overview-card{
+
+    background:white;
+
+    border:
+        1px solid
+        var(--rose3);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:
+        var(--shadow);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.overview-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    right:-35px;
+    top:-35px;
+
+    background:#ffb8d633;
+}
+
+.overview-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+.overview-icon{
+
+    width:60px;
+    height:60px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:30px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f7,
+            #ffd4e7
+        );
+
+    margin-bottom:18px;
+}
+
+.overview-card h3{
+
+    font-size:18px;
+
+    margin-bottom:7px;
+}
+
+.overview-card p{
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   CURRICULUM AREA
+========================================================= */
+
+.curriculum{
+
+    padding:
+        50px
+        0
+        100px;
+}
+
+
+/* =========================================================
+   SESSION TABS
+========================================================= */
+
+.session-tabs{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:14px;
+
+    margin-bottom:30px;
+}
+
+.session-tab{
+
+    border:none;
+
+    cursor:pointer;
+
+    background:white;
+
+    border:
+        1px solid
+        var(--rose3);
+
+    border-radius:23px;
+
+    padding:22px 15px;
+
+    text-align:left;
+
+    box-shadow:
+        var(--shadow);
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.session-tab:hover{
+
+    transform:
+        translateY(-5px);
+}
+
+.session-tab.active{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--red)
+        );
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 20px 45px
+        rgba(230,0,69,.25);
+}
+
+.session-tab-number{
+
+    font-size:11px;
+
+    font-weight:900;
+
+    opacity:.75;
+
+    letter-spacing:1px;
+}
+
+.session-tab-title{
+
+    display:block;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    margin-top:5px;
+}
+
+.session-tab-hours{
+
+    display:block;
+
+    font-size:12px;
+
+    margin-top:8px;
+
+    opacity:.75;
+}
+
+
+/* =========================================================
+   SESSION CONTENT
+========================================================= */
+
+.session-content{
+
+    display:none;
+
+    animation:
+        sessionOpen
+        .5s
+        ease;
+}
+
+.session-content.active{
+
+    display:block;
+}
+
+@keyframes sessionOpen{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   SESSION HEADER
+========================================================= */
+
+.session-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:25px;
+
+    padding:32px;
+
+    margin-bottom:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            white,
+            #fff0f7
+        );
+
+    border:
+        1px solid
+        var(--rose3);
+
+    border-radius:30px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.session-header-main{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+.session-icon{
+
+    width:75px;
+    height:75px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:38px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd5e7,
+            #fff
+        );
+}
+
+.session-header h3{
+
+    font-size:
+        clamp(
+            22px,
+            3vw,
+            31px
+        );
+
+    color:var(--ink);
+}
+
+.session-header p{
+
+    margin-top:7px;
+
+    color:var(--muted);
+
+    line-height:1.5;
+}
+
+.session-tag{
+
+    padding:
+        12px
+        20px;
+
+    border-radius:50px;
+
+    background:var(--red);
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   SESSION PROGRESS
+========================================================= */
+
+.progress-area{
+
+    margin:
+        20px
+        0
+        35px;
+}
+
+.progress-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:9px;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.progress-track{
+
+    height:10px;
+
+    background:#ffd8e8;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    height:100%;
+
+    width:0;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--pink),
+            var(--red)
+        );
+
+    transition:
+        width
+        1s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   MODULE TOOLBAR
+========================================================= */
+
+.module-toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:22px;
+
+    flex-wrap:wrap;
+}
+
+.module-count{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    color:var(--muted);
+}
+
+.search-box{
+
+    position:relative;
+}
+
+.search-box input{
+
+    width:280px;
+
+    border:
+        1px solid
+        var(--rose3);
+
+    background:white;
+
+    padding:
+        12px
+        16px
+        12px
+        42px;
+
+    border-radius:50px;
+
+    outline:none;
+
+    color:var(--text);
+
+    box-shadow:
+        0 8px 25px
+        rgba(190,0,75,.07);
+}
+
+.search-box span{
+
+    position:absolute;
+
+    left:16px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size:17px;
+}
+
+
+/* =========================================================
+   MODULE GRID
+========================================================= */
+
+.module-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:20px;
+}
+
+.module-card{
+
+    background:white;
+
+    border:
+        1px solid
+        var(--rose3);
+
+    border-radius:27px;
+
+    padding:25px;
+
+    box-shadow:
+        var(--shadow);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.module-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+.module-number{
+
+    position:absolute;
+
+    top:20px;
+    right:20px;
+
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        var(--rose);
+
+    color:var(--red);
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+.module-head{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding-right:40px;
+
+    margin-bottom:18px;
+}
+
+.module-icon{
+
+    width:60px;
+    height:60px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:29px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f7,
+            #ffd4e6
+        );
+}
+
+.module-card h4{
+
+    font-size:19px;
+
+    color:var(--ink);
+
+    line-height:1.25;
+}
+
+.module-level{
+
+    display:inline-block;
+
+    margin-top:5px;
+
+    color:var(--pink);
+
+    font-size:11px;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    letter-spacing:.7px;
+}
+
+.module-description{
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    color:var(--muted);
+
+    margin-bottom:16px;
+}
+
+.topic-list{
+
+    list-style:none;
+}
+
+.topic-list li{
+
+    position:relative;
+
+    padding:
+        7px
+        0
+        7px
+        24px;
+
+    font-size:13px;
+
+    color:#604a57;
+
+    border-bottom:
+        1px dashed
+        #f0d8e3;
+}
+
+.topic-list li:last-child{
+
+    border-bottom:none;
+}
+
+.topic-list li::before{
+
+    content:"✓";
+
+    position:absolute;
+
+    left:0;
+
+    top:7px;
+
+    width:17px;
+    height:17px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#ffe0ed;
+
+    color:var(--red);
+
+    font-size:10px;
+
+    font-weight:900;
+}
+
+.module-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-top:17px;
+
+    padding-top:14px;
+
+    border-top:
+        1px solid
+        #f6e1ea;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:var(--muted);
+}
+
+.module-footer span:first-child{
+
+    color:var(--red);
+}
+
+
+/* =========================================================
+   EMPTY SEARCH
+========================================================= */
+
+.no-results{
+
+    display:none;
+
+    text-align:center;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    color:var(--muted);
+
+    border:
+        1px solid
+        var(--rose3);
+}
+
+
+/* =========================================================
+   LEARNING MODEL
+========================================================= */
+
+.learning-model{
+
+    padding:
+        30px
+        0
+        100px;
+}
+
+.model-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:15px;
+}
+
+.model-card{
+
+    text-align:center;
+
+    background:white;
+
+    padding:25px 15px;
+
+    border-radius:23px;
+
+    box-shadow:
+        var(--shadow);
+
+    border:
+        1px solid
+        var(--rose3);
+}
+
+.model-card strong{
+
+    display:block;
+
+    font-size:25px;
+
+    color:var(--red);
+
+    margin-bottom:8px;
+}
+
+.model-card h4{
+
+    margin-bottom:6px;
+}
+
+.model-card p{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   CAREER SECTION
+========================================================= */
+
+.career{
+
+    padding:
+        30px
+        0
+        90px;
+}
+
+.career-box{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1493,
+            #e60045
+        );
+
+    color:white;
+
+    border-radius:35px;
+
+    padding:
+        55px
+        40px;
+
+    box-shadow:
+        0 30px 70px
+        rgba(230,0,69,.28);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.career-box::before{
+
+    content:"❤";
+
+    position:absolute;
+
+    font-size:280px;
+
+    opacity:.07;
+
+    left:-70px;
+    top:-120px;
+}
+
+.career-box::after{
+
+    content:"🚀";
+
+    position:absolute;
+
+    font-size:180px;
+
+    opacity:.08;
+
+    right:-25px;
+    bottom:-50px;
+}
+
+.career-inner{
+
+    position:relative;
+
+    z-index:2;
+}
+
+.career-box h2{
+
+    text-align:center;
+
+    font-size:
+        clamp(
+            30px,
+            5vw,
+            50px
+        );
+
+    margin-bottom:12px;
+}
+
+.career-box > p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    text-align:center;
+
+    opacity:.9;
+
+    line-height:1.6;
+}
+
+.career-list{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+
+    margin-top:35px;
+}
+
+.career-item{
+
+    padding:15px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    background:
+        rgba(255,255,255,.1);
+
+    border-radius:18px;
+
+    text-align:center;
+
+    backdrop-filter:blur(5px);
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   FINAL PROJECT
+========================================================= */
+
+.project-section{
+
+    padding:
+        0
+        0
+        90px;
+}
+
+.project-card{
+
+    background:white;
+
+    border:
+        1px solid
+        var(--rose3);
+
+    border-radius:32px;
+
+    padding:40px;
+
+    box-shadow:
+        var(--shadow);
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:40px;
+
+    align-items:center;
+}
+
+.project-card h2{
+
+    font-size:
+        clamp(
+            28px,
+            4vw,
+            42px
+        );
+
+    color:var(--ink);
+
+    margin-bottom:12px;
+}
+
+.project-card h2 span{
+
+    color:var(--red);
+}
+
+.project-card p{
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+.project-features{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+    margin-top:25px;
+}
+
+.project-feature{
+
+    padding:15px;
+
+    border-radius:17px;
+
+    background:var(--rose);
+
+    color:var(--text);
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.project-visual{
+
+    min-height:320px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f7,
+            #ffd2e5
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.project-visual::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    border:
+        30px solid
+        #ff149326;
+}
+
+.project-code{
+
+    position:relative;
+
+    z-index:2;
+
+    background:
+        #2a1521;
+
+    color:#ffd9e9;
+
+    width:80%;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size:12px;
+
+    line-height:1.8;
+
+    box-shadow:
+        0 20px 45px
+        rgba(50,0,25,.2);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    background:white;
+
+    border-top:
+        1px solid
+        var(--rose3);
+
+    padding:
+        35px
+        20px;
+
+    text-align:center;
+}
+
+footer strong{
+
+    color:var(--red);
+}
+
+footer p{
+
+    margin-top:7px;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.show{
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+    .module-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .overview-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .model-grid{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .career-list{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .project-card{
+        grid-template-columns:1fr;
+    }
+}
+
+
+@media(max-width:750px){
+
+    .hero{
+        min-height:620px;
+    }
+
+    .hero-stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .session-tabs{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .module-grid{
+        grid-template-columns:1fr;
+    }
+
+    .model-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .session-header{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .session-tag{
+        align-self:flex-start;
+    }
+}
+
+
+@media(max-width:520px){
+
+    .hero{
+        padding-top:60px;
+    }
+
+    .hero h1{
+        font-size:90px;
+    }
+
+    .hero h2{
+        font-size:16px;
+        padding:12px 17px;
+    }
+
+    .hero-description{
+        font-size:15px;
+    }
+
+    .overview-grid{
+        grid-template-columns:1fr;
+    }
+
+    .session-tabs{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .session-tab{
+        padding:16px 10px;
+    }
+
+    .session-tab-title{
+        font-size:13px;
+    }
+
+    .session-tab-hours{
+        font-size:10px;
+    }
+
+    .session-header{
+        padding:23px;
+    }
+
+    .session-header-main{
+        align-items:flex-start;
+    }
+
+    .session-icon{
+        width:58px;
+        height:58px;
+        font-size:28px;
+    }
+
+    .module-toolbar{
+        align-items:stretch;
+    }
+
+    .search-box{
+        width:100%;
+    }
+
+    .search-box input{
+        width:100%;
+    }
+
+    .model-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .career-box{
+        padding:40px 20px;
+    }
+
+    .career-list{
+        grid-template-columns:1fr;
+    }
+
+    .project-card{
+        padding:25px;
+    }
+
+    .project-features{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="bg-orb one"></div>
+<div class="bg-orb two"></div>
+
+<div class="floating-heart one">❤</div>
+<div class="floating-heart two">❤</div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<header class="hero">
+
+<div class="hero-content">
+
+    <div class="hero-badge">
+        🎓 12-Month Professional Computer Program
+    </div>
+
+    <h1>ADCA</h1>
+
+    <h2>
+        Advanced Diploma in Computer Applications
+    </h2>
+
+    <p class="hero-description">
+
+        A comprehensive 12-month journey covering
+        computer science fundamentals, programming,
+        databases, web development, networking,
+        cybersecurity, AI, productivity tools and
+        real-world project development.
+
+        ❤️
+
+    </p>
+
+
+    <div class="hero-stats">
+
+        <div class="hero-stat">
+            <strong>12</strong>
+            <span>MONTHS</span>
+        </div>
+
+        <div class="hero-stat">
+            <strong>4</strong>
+            <span>SESSIONS</span>
+        </div>
+
+        <div class="hero-stat">
+            <strong>18+</strong>
+            <span>CORE MODULES</span>
+        </div>
+
+        <div class="hero-stat">
+            <strong>600+</strong>
+            <span>LEARNING HOURS*</span>
+        </div>
+
+    </div>
+
+</div>
+
+</header>
+
+
+<!-- =========================================================
+     OVERVIEW
+========================================================= -->
+
+<section class="overview">
+
+<div class="container">
+
+<div class="section-title">
+
+    <div class="section-kicker">
+        ❤️ Beyond Basic Computer Training
+    </div>
+
+    <h2>
+        What Makes ADCA <span>Advanced?</span>
+    </h2>
+
+    <p>
+        Designed as a structured computer applications program
+        from fundamentals to professional project work.
+    </p>
+
+</div>
+
+
+<div class="overview-grid">
+
+
+<div class="overview-card reveal">
+
+    <div class="overview-icon">
+        🧠
+    </div>
+
+    <h3>
+        Computer Science
+    </h3>
+
+    <p>
+        Algorithms, computational thinking,
+        operating systems, architecture and
+        problem-solving fundamentals.
+    </p>
+
+</div>
+
+
+<div class="overview-card reveal">
+
+    <div class="overview-icon">
+        👨‍💻
+    </div>
+
+    <h3>
+        Programming
+    </h3>
+
+    <p>
+        C programming, Python, programming logic,
+        functions, data structures concepts and OOP.
+    </p>
+
+</div>
+
+
+<div class="overview-card reveal">
+
+    <div class="overview-icon">
+        🌐
+    </div>
+
+    <h3>
+        Web Technology
+    </h3>
+
+    <p>
+        HTML5, CSS3, JavaScript, responsive design,
+        web development and deployment fundamentals.
+    </p>
+
+</div>
+
+
+<div class="overview-card reveal">
+
+    <div class="overview-icon">
+        🚀
+    </div>
+
+    <h3>
+        Real Projects
+    </h3>
+
+    <p>
+        Practical assignments, mini projects,
+        major project, documentation, presentation
+        and viva.
+    </p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     CURRICULUM
+========================================================= -->
+
+<section class="curriculum">
+
+<div class="container">
+
+<div class="section-title">
+
+    <div class="section-kicker">
+        📚 Complete 12-Month Curriculum
+    </div>
+
+    <h2>
+        ADCA <span>Learning Sessions</span>
+    </h2>
+
+    <p>
+        Four progressive stages — Foundation → Programming →
+        Web & Network → Advanced Technology & Project
+    </p>
+
+</div>
+
+
+<!-- SESSION TABS -->
+
+<div class="session-tabs">
+
+<button
+    class="session-tab active"
+    data-session="1">
+
+    <span class="session-tab-number">
+        SESSION 01
+    </span>
+
+    <span class="session-tab-title">
+        🌱 Foundation
+    </span>
+
+    <span class="session-tab-hours">
+        Months 01–03
+    </span>
+
+</button>
+
+
+<button
+    class="session-tab"
+    data-session="2">
+
+    <span class="session-tab-number">
+        SESSION 02
+    </span>
+
+    <span class="session-tab-title">
+        👨‍💻 Programming
+    </span>
+
+    <span class="session-tab-hours">
+        Months 04–06
+    </span>
+
+</button>
+
+
+<button
+    class="session-tab"
+    data-session="3">
+
+    <span class="session-tab-number">
+        SESSION 03
+    </span>
+
+    <span class="session-tab-title">
+        🌐 Web & Network
+    </span>
+
+    <span class="session-tab-hours">
+        Months 07–09
+    </span>
+
+</button>
+
+
+<button
+    class="session-tab"
+    data-session="4">
+
+    <span class="session-tab-number">
+        SESSION 04
+    </span>
+
+    <span class="session-tab-title">
+        🚀 Advanced & Project
+    </span>
+
+    <span class="session-tab-hours">
+        Months 10–12
+    </span>
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     SESSION 01
+===================================================== -->
+
+<div
+    class="session-content active"
+    id="session-1">
+
+
+<div class="session-header">
+
+<div class="session-header-main">
+
+    <div class="session-icon">
+        🌱
+    </div>
+
+    <div>
+
+        <h3>
+            Session 01 — Computer Science Foundation
+        </h3>
+
+        <p>
+            Months 01–03 • Build the technical foundation
+            required for advanced computer applications.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="session-tag">
+    180+ Hours*
+</div>
+
+</div>
+
+
+<div class="progress-area">
+
+<div class="progress-info">
+
+    <span>
+        Programme Progress
+    </span>
+
+    <span>
+        25%
+    </span>
+
+</div>
+
+<div class="progress-track">
+
+    <div
+        class="progress-bar"
+        data-width="25%">
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="module-toolbar">
+
+<div class="module-count">
+    📚 5 Core Modules
+</div>
+
+<div class="search-box">
+
+    <span>🔍</span>
+
+    <input
+        type="search"
+        class="module-search"
+        placeholder="Search this session...">
+
+</div>
+
+</div>
+
+
+<div class="module-grid">
+
+
+<!-- 01 -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    01
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        💻
+    </div>
+
+    <div>
+
+        <h4>
+            Computer Fundamentals
+        </h4>
+
+        <span class="module-level">
+            Foundation
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Understand how modern computers represent,
+    process, store and communicate information.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>History & Generations of Computers</li>
+    <li>Classification of Computers</li>
+    <li>Computer Architecture</li>
+    <li>CPU, ALU & Control Unit</li>
+    <li>Primary & Secondary Memory</li>
+    <li>Input / Output Devices</li>
+    <li>Storage Technologies</li>
+    <li>Number Systems</li>
+    <li>Binary, Decimal, Octal & Hexadecimal</li>
+    <li>Binary Arithmetic</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🧠 Theory + Practical</span>
+
+    <span>36 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- 02 -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    02
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        ⚙️
+    </div>
+
+    <div>
+
+        <h4>
+            Operating Systems
+        </h4>
+
+        <span class="module-level">
+            System
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Learn how operating systems manage hardware,
+    files, users, applications and system resources.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>OS Concepts</li>
+    <li>Types of Operating Systems</li>
+    <li>Windows Administration</li>
+    <li>Linux Fundamentals</li>
+    <li>File Systems</li>
+    <li>Files & Directory Management</li>
+    <li>Users & Permissions</li>
+    <li>Processes & Applications</li>
+    <li>System Utilities</li>
+    <li>Backup & Recovery</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>💻 Lab Required</span>
+
+    <span>40 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- 03 -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    03
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        📝
+    </div>
+
+    <div>
+
+        <h4>
+            Office Automation
+        </h4>
+
+        <span class="module-level">
+            Professional
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Develop professional productivity skills for
+    documents, spreadsheets, presentations and data work.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Advanced MS Word</li>
+    <li>Professional Documentation</li>
+    <li>Tables & Templates</li>
+    <li>Mail Merge</li>
+    <li>Advanced MS Excel</li>
+    <li>Formulas & Functions</li>
+    <li>Charts & Data Analysis</li>
+    <li>PowerPoint Design</li>
+    <li>Presentations & Multimedia</li>
+    <li>Office Productivity</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>📊 Practical Heavy</span>
+
+    <span>45 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- 04 -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    04
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🌐
+    </div>
+
+    <div>
+
+        <h4>
+            Internet & Digital Technology
+        </h4>
+
+        <span class="module-level">
+            Digital
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Understand internet services, cloud tools,
+    digital communication and online collaboration.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Internet Architecture Basics</li>
+    <li>WWW & Web Browsers</li>
+    <li>Search Engines</li>
+    <li>Email Systems</li>
+    <li>Cloud Computing Concepts</li>
+    <li>Cloud Storage</li>
+    <li>Online Collaboration</li>
+    <li>Google Workspace</li>
+    <li>Microsoft 365 Concepts</li>
+    <li>Digital Citizenship</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🌐 Practical</span>
+
+    <span>30 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- 05 -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    05
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🧠
+    </div>
+
+    <div>
+
+        <h4>
+            Problem Solving & Algorithms
+        </h4>
+
+        <span class="module-level">
+            Computer Science
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Learn how programmers convert real-world
+    problems into logical computational solutions.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Problem Decomposition</li>
+    <li>Computational Thinking</li>
+    <li>Algorithms</li>
+    <li>Pseudocode</li>
+    <li>Flowcharts</li>
+    <li>Decision Making</li>
+    <li>Iteration</li>
+    <li>Basic Complexity Concepts</li>
+    <li>Debugging Logic</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🧠 Logic Building</span>
+
+    <span>30 HRS*</span>
+
+</div>
+
+</article>
+
+
+</div>
+
+<div class="no-results">
+    🔍 No module found in this session.
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     SESSION 02
+===================================================== -->
+
+<div
+    class="session-content"
+    id="session-2">
+
+
+<div class="session-header">
+
+<div class="session-header-main">
+
+    <div class="session-icon">
+        👨‍💻
+    </div>
+
+    <div>
+
+        <h3>
+            Session 02 — Programming & Database
+        </h3>
+
+        <p>
+            Months 04–06 • Move from computer user to
+            programmer and database practitioner.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="session-tag">
+    180+ Hours*
+</div>
+
+</div>
+
+
+<div class="progress-area">
+
+<div class="progress-info">
+
+    <span>
+        Programme Progress
+    </span>
+
+    <span>
+        50%
+    </span>
+
+</div>
+
+<div class="progress-track">
+
+    <div
+        class="progress-bar"
+        data-width="50%">
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="module-toolbar">
+
+<div class="module-count">
+    💻 4 Core Modules
+</div>
+
+<div class="search-box">
+
+    <span>🔍</span>
+
+    <input
+        type="search"
+        class="module-search"
+        placeholder="Search this session...">
+
+</div>
+
+</div>
+
+
+<div class="module-grid">
+
+
+<!-- C -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    06
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        ©️
+    </div>
+
+    <div>
+
+        <h4>
+            C Programming
+        </h4>
+
+        <span class="module-level">
+            Programming
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Build programming fundamentals through
+    structured C programming and problem solving.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>C Program Structure</li>
+    <li>Variables & Constants</li>
+    <li>Data Types</li>
+    <li>Operators & Expressions</li>
+    <li>Input & Output</li>
+    <li>if / else / switch</li>
+    <li>for / while / do-while</li>
+    <li>Functions</li>
+    <li>Arrays & Strings</li>
+    <li>Pointers</li>
+    <li>Structures & Unions</li>
+    <li>File Handling</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>👨‍💻 Intensive Lab</span>
+
+    <span>60 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- Python -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    07
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🐍
+    </div>
+
+    <div>
+
+        <h4>
+            Python Programming
+        </h4>
+
+        <span class="module-level">
+            Modern Programming
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Learn Python for automation, application development
+    and modern programming workflows.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Python Environment</li>
+    <li>Variables & Data Types</li>
+    <li>Operators</li>
+    <li>Conditional Statements</li>
+    <li>Loops</li>
+    <li>Lists, Tuples & Dictionaries</li>
+    <li>Functions</li>
+    <li>Modules & Packages</li>
+    <li>Exception Handling</li>
+    <li>File Handling</li>
+    <li>Object-Oriented Programming</li>
+    <li>Basic Automation</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🐍 Lab + Mini Projects</span>
+
+    <span>55 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- DBMS -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    08
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🗄️
+    </div>
+
+    <div>
+
+        <h4>
+            DBMS & SQL
+        </h4>
+
+        <span class="module-level">
+            Database
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Understand relational databases and use SQL
+    to store, query and manage structured information.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Database Concepts</li>
+    <li>DBMS vs File Systems</li>
+    <li>Relational Model</li>
+    <li>Tables & Relationships</li>
+    <li>Primary & Foreign Keys</li>
+    <li>ER Diagrams</li>
+    <li>Normalization</li>
+    <li>SQL SELECT</li>
+    <li>INSERT / UPDATE / DELETE</li>
+    <li>JOIN Operations</li>
+    <li>Aggregate Functions</li>
+    <li>Views & Basic Procedures</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🗄️ MySQL Lab</span>
+
+    <span>45 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- Data -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    09
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        📊
+    </div>
+
+    <div>
+
+        <h4>
+            Data Handling & Analytics
+        </h4>
+
+        <span class="module-level">
+            Applied Computing
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Learn practical techniques for organizing,
+    cleaning, analyzing and presenting data.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Data Collection</li>
+    <li>Structured Data</li>
+    <li>Data Cleaning Concepts</li>
+    <li>Excel Data Analysis</li>
+    <li>Sorting & Filtering</li>
+    <li>Pivot Tables</li>
+    <li>Charts & Visualization</li>
+    <li>Basic Statistical Concepts</li>
+    <li>Data Reporting</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>📈 Practical</span>
+
+    <span>35 HRS*</span>
+
+</div>
+
+</article>
+
+
+</div>
+
+<div class="no-results">
+    🔍 No module found in this session.
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     SESSION 03
+===================================================== -->
+
+<div
+    class="session-content"
+    id="session-3">
+
+
+<div class="session-header">
+
+<div class="session-header-main">
+
+    <div class="session-icon">
+        🌐
+    </div>
+
+    <div>
+
+        <h3>
+            Session 03 — Web Technology & Networking
+        </h3>
+
+        <p>
+            Months 07–09 • Design websites and understand
+            how computers communicate across networks.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="session-tag">
+    180+ Hours*
+</div>
+
+</div>
+
+
+<div class="progress-area">
+
+<div class="progress-info">
+
+    <span>
+        Programme Progress
+    </span>
+
+    <span>
+        75%
+    </span>
+
+</div>
+
+<div class="progress-track">
+
+    <div
+        class="progress-bar"
+        data-width="75%">
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="module-toolbar">
+
+<div class="module-count">
+    🌐 5 Core Modules
+</div>
+
+<div class="search-box">
+
+    <span>🔍</span>
+
+    <input
+        type="search"
+        class="module-search"
+        placeholder="Search this session...">
+
+</div>
+
+</div>
+
+
+<div class="module-grid">
+
+
+<!-- HTML -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    10
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🧱
+    </div>
+
+    <div>
+
+        <h4>
+            HTML5
+        </h4>
+
+        <span class="module-level">
+            Web Structure
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Build structured and semantic web pages using
+    modern HTML5 standards.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>HTML Document Structure</li>
+    <li>Semantic HTML</li>
+    <li>Headings & Text</li>
+    <li>Links & Navigation</li>
+    <li>Images & Multimedia</li>
+    <li>Lists</li>
+    <li>Tables</li>
+    <li>Forms & Validation</li>
+    <li>HTML5 APIs Overview</li>
+    <li>Accessibility Basics</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🌐 Web Lab</span>
+
+    <span>35 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- CSS -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    11
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🎨
+    </div>
+
+    <div>
+
+        <h4>
+            CSS3 & Responsive Design
+        </h4>
+
+        <span class="module-level">
+            UI Design
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Transform structured HTML into responsive,
+    modern and visually polished interfaces.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>CSS Syntax</li>
+    <li>Selectors</li>
+    <li>Colors & Typography</li>
+    <li>Box Model</li>
+    <li>Positioning</li>
+    <li>Flexbox</li>
+    <li>CSS Grid</li>
+    <li>Responsive Design</li>
+    <li>Transitions</li>
+    <li>Animations</li>
+    <li>UI Components</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🎨 Design Lab</span>
+
+    <span>40 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- JS -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    12
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        ⚡
+    </div>
+
+    <div>
+
+        <h4>
+            JavaScript
+        </h4>
+
+        <span class="module-level">
+            Web Programming
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Add logic, interaction and dynamic behavior
+    to web applications.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>JavaScript Fundamentals</li>
+    <li>Variables & Data Types</li>
+    <li>Operators</li>
+    <li>Conditions & Loops</li>
+    <li>Functions</li>
+    <li>Arrays & Objects</li>
+    <li>DOM Manipulation</li>
+    <li>Events</li>
+    <li>Form Validation</li>
+    <li>Local Storage</li>
+    <li>Fetch API Concepts</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>⚡ Interactive Projects</span>
+
+    <span>50 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- NETWORK -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    13
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🌐
+    </div>
+
+    <div>
+
+        <h4>
+            Computer Networking
+        </h4>
+
+        <span class="module-level">
+            Networking
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Understand how devices communicate and how
+    networks are designed and administered.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Networking Fundamentals</li>
+    <li>LAN / MAN / WAN</li>
+    <li>Network Topologies</li>
+    <li>OSI Model</li>
+    <li>TCP/IP Model</li>
+    <li>IPv4 Addressing</li>
+    <li>Subnetting Fundamentals</li>
+    <li>Switches & Routers</li>
+    <li>DNS & DHCP</li>
+    <li>Network Troubleshooting</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🌐 Network Lab</span>
+
+    <span>45 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- WEB DEPLOYMENT -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    14
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🚀
+    </div>
+
+    <div>
+
+        <h4>
+            Web Deployment
+        </h4>
+
+        <span class="module-level">
+            Practical
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Learn the practical path from a local website
+    to a publicly accessible web project.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Domain Concepts</li>
+    <li>Web Hosting</li>
+    <li>Web Servers</li>
+    <li>FTP Concepts</li>
+    <li>DNS Records</li>
+    <li>SSL / HTTPS</li>
+    <li>Website Optimization</li>
+    <li>Basic SEO Concepts</li>
+    <li>Deployment Workflow</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🚀 Deployment Lab</span>
+
+    <span>30 HRS*</span>
+
+</div>
+
+</article>
+
+
+</div>
+
+<div class="no-results">
+    🔍 No module found in this session.
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     SESSION 04
+===================================================== -->
+
+<div
+    class="session-content"
+    id="session-4">
+
+
+<div class="session-header">
+
+<div class="session-header-main">
+
+    <div class="session-icon">
+        🚀
+    </div>
+
+    <div>
+
+        <h3>
+            Session 04 — Advanced Technology & Project
+        </h3>
+
+        <p>
+            Months 10–12 • Security, AI, multimedia,
+            accounting, professional skills and major project.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="session-tag">
+    180+ Hours*
+</div>
+
+</div>
+
+
+<div class="progress-area">
+
+<div class="progress-info">
+
+    <span>
+        Programme Progress
+    </span>
+
+    <span>
+        100%
+    </span>
+
+</div>
+
+<div class="progress-track">
+
+    <div
+        class="progress-bar"
+        data-width="100%">
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="module-toolbar">
+
+<div class="module-count">
+    🚀 5 Advanced Modules
+</div>
+
+<div class="search-box">
+
+    <span>🔍</span>
+
+    <input
+        type="search"
+        class="module-search"
+        placeholder="Search this session...">
+
+</div>
+
+</div>
+
+
+<div class="module-grid">
+
+
+<!-- Cyber -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    15
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🔐
+    </div>
+
+    <div>
+
+        <h4>
+            Cyber Security
+        </h4>
+
+        <span class="module-level">
+            Security
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Learn security awareness and the fundamentals
+    of protecting systems, accounts and information.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Cybersecurity Fundamentals</li>
+    <li>Threats & Vulnerabilities</li>
+    <li>Malware</li>
+    <li>Phishing</li>
+    <li>Social Engineering</li>
+    <li>Password Security</li>
+    <li>Authentication</li>
+    <li>Encryption Concepts</li>
+    <li>Firewalls & Antivirus</li>
+    <li>Data Privacy</li>
+    <li>Cyber Law Awareness</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🛡️ Security Lab</span>
+
+    <span>40 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- AI -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    16
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🤖
+    </div>
+
+    <div>
+
+        <h4>
+            Artificial Intelligence
+        </h4>
+
+        <span class="module-level">
+            Emerging Technology
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Understand modern AI concepts and learn how
+    AI tools can improve productivity and development.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Artificial Intelligence Fundamentals</li>
+    <li>Machine Learning Concepts</li>
+    <li>Training Data Concepts</li>
+    <li>Generative AI</li>
+    <li>Large Language Models</li>
+    <li>Prompt Engineering</li>
+    <li>AI Productivity Tools</li>
+    <li>Responsible AI</li>
+    <li>AI-Assisted Programming</li>
+    <li>AI Project Ideas</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🤖 AI Workshop</span>
+
+    <span>30 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- Graphics -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    17
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🎨
+    </div>
+
+    <div>
+
+        <h4>
+            Graphic Design & Multimedia
+        </h4>
+
+        <span class="module-level">
+            Creative Technology
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Develop practical visual communication skills
+    for digital content and computer applications.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Graphic Design Fundamentals</li>
+    <li>Color Theory</li>
+    <li>Typography</li>
+    <li>Image Editing</li>
+    <li>Logo Design</li>
+    <li>Posters & Banners</li>
+    <li>Canva Workflow</li>
+    <li>Photoshop Concepts</li>
+    <li>Social Media Graphics</li>
+    <li>Basic Video Editing</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🎨 Creative Lab</span>
+
+    <span>35 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- Tally -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    18
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        💰
+    </div>
+
+    <div>
+
+        <h4>
+            Tally & Digital Accounting
+        </h4>
+
+        <span class="module-level">
+            Business Computing
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Learn computer-based accounting workflows
+    commonly used in small businesses and offices.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Accounting Fundamentals</li>
+    <li>Company Creation</li>
+    <li>Ledger & Groups</li>
+    <li>Voucher Entry</li>
+    <li>Sales & Purchase</li>
+    <li>Inventory Basics</li>
+    <li>GST Concepts</li>
+    <li>Reports</li>
+    <li>Payroll Concepts</li>
+    <li>Data Backup</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>💰 Accounting Lab</span>
+
+    <span>35 HRS*</span>
+
+</div>
+
+</article>
+
+
+<!-- PROJECT -->
+
+<article class="module-card reveal">
+
+<span class="module-number">
+    19
+</span>
+
+<div class="module-head">
+
+    <div class="module-icon">
+        🏆
+    </div>
+
+    <div>
+
+        <h4>
+            Major Project & Viva
+        </h4>
+
+        <span class="module-level">
+            Capstone
+        </span>
+
+    </div>
+
+</div>
+
+<p class="module-description">
+
+    Integrate your knowledge into a complete project
+    and demonstrate your technical understanding.
+
+</p>
+
+<ul class="topic-list">
+
+    <li>Problem Identification</li>
+    <li>Project Planning</li>
+    <li>Requirement Analysis</li>
+    <li>Database Design</li>
+    <li>UI / Web Development</li>
+    <li>Testing & Debugging</li>
+    <li>Documentation</li>
+    <li>Project Report</li>
+    <li>Presentation</li>
+    <li>Technical Viva</li>
+
+</ul>
+
+<div class="module-footer">
+
+    <span>🏆 Final Assessment</span>
+
+    <span>60 HRS*</span>
+
+</div>
+
+</article>
+
+
+</div>
+
+<div class="no-results">
+    🔍 No module found in this session.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LEARNING MODEL
+========================================================= -->
+
+<section class="learning-model">
+
+<div class="container">
+
+<div class="section-title">
+
+    <div class="section-kicker">
+        🧠 How Students Learn
+    </div>
+
+    <h2>
+        From <span>Theory</span> to Real Skills
+    </h2>
+
+</div>
+
+
+<div class="model-grid">
+
+
+<div class="model-card reveal">
+
+    <strong>01</strong>
+
+    <h4>Learn</h4>
+
+    <p>
+        Understand concepts and principles.
+    </p>
+
+</div>
+
+
+<div class="model-card reveal">
+
+    <strong>02</strong>
+
+    <h4>Practice</h4>
+
+    <p>
+        Perform guided computer laboratory exercises.
+    </p>
+
+</div>
+
+
+<div class="model-card reveal">
+
+    <strong>03</strong>
+
+    <h4>Build</h4>
+
+    <p>
+        Create assignments and mini projects.
+    </p>
+
+</div>
+
+
+<div class="model-card reveal">
+
+    <strong>04</strong>
+
+    <h4>Test</h4>
+
+    <p>
+        Complete theory and practical assessments.
+    </p>
+
+</div>
+
+
+<div class="model-card reveal">
+
+    <strong>05</strong>
+
+    <h4>Demonstrate</h4>
+
+    <p>
+        Present the final project and viva.
+    </p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MAJOR PROJECT
+========================================================= -->
+
+<section class="project-section">
+
+<div class="container">
+
+<div class="project-card reveal">
+
+
+<div>
+
+    <div class="section-kicker">
+        🏆 CAPSTONE
+    </div>
+
+    <h2>
+        Build a <span>Real Project</span>
+    </h2>
+
+    <p>
+
+        The final stage of ADCA is not simply another
+        chapter. Students bring together programming,
+        databases, web technology, documentation and
+        presentation skills to develop a complete
+        practical project.
+
+    </p>
+
+
+    <div class="project-features">
+
+        <div class="project-feature">
+            🧠 Requirement Analysis
+        </div>
+
+        <div class="project-feature">
+            🗄️ Database Design
+        </div>
+
+        <div class="project-feature">
+            🌐 Application / Website
+        </div>
+
+        <div class="project-feature">
+            🧪 Testing
+        </div>
+
+        <div class="project-feature">
+            📄 Documentation
+        </div>
+
+        <div class="project-feature">
+            🎤 Viva & Presentation
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="project-visual">
+
+<div class="project-code">
+
+<span>/* ADCA FINAL PROJECT */</span>
+
+<br>
+
+<span>project.start();</span>
+
+<br>
+
+<span>→ analyseRequirements();</span>
+
+<br>
+
+<span>→ designDatabase();</span>
+
+<br>
+
+<span>→ developApplication();</span>
+
+<br>
+
+<span>→ testSystem();</span>
+
+<br>
+
+<span>→ prepareDocumentation();</span>
+
+<br>
+
+<span>→ presentProject();</span>
+
+<br><br>
+
+<span>✓ PROJECT COMPLETED ❤️</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     CAREER
+========================================================= -->
+
+<section class="career">
+
+<div class="container">
+
+<div class="career-box">
+
+<div class="career-inner">
+
+<h2>
+    🚀 Skills You Can Build
+</h2>
+
+<p>
+
+    The programme develops a broad computer-application
+    foundation. Career outcomes depend on individual
+    skill level, experience, further education and
+    employer requirements.
+
+</p>
+
+
+<div class="career-list">
+
+<div class="career-item">
+    💻 Computer Operator
+</div>
+
+<div class="career-item">
+    🏢 Office Executive
+</div>
+
+<div class="career-item">
+    📊 Data Assistant
+</div>
+
+<div class="career-item">
+    🌐 Web Designer
+</div>
+
+<div class="career-item">
+    👨‍💻 Junior Developer
+</div>
+
+<div class="career-item">
+    🗄️ Database Assistant
+</div>
+
+<div class="career-item">
+    🌐 IT Support
+</div>
+
+<div class="career-item">
+    🎨 Digital Designer
+</div>
+
+<div class="career-item">
+    💰 Tally Operator
+</div>
+
+<div class="career-item">
+    🔐 Security Awareness
+</div>
+
+<div class="career-item">
+    🤖 AI Productivity
+</div>
+
+<div class="career-item">
+    🚀 Freelance Projects
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+<div class="container">
+
+<strong>
+    ❤️ ADCA — Advanced Diploma in Computer Applications
+</strong>
+
+<p>
+    Learn • Practice • Build • Test • Create • Grow
+</p>
+
+<p>
+    *Learning hours, module sequencing and assessment structure
+    can be customized by the institute according to its
+    academic plan.
+</p>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   SESSION SWITCHING
+========================================================= */
+
+const sessionTabs =
+    document.querySelectorAll(".session-tab");
+
+const sessionContents =
+    document.querySelectorAll(".session-content");
+
+
+sessionTabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        const session =
+            tab.dataset.session;
+
+
+        /* Remove active tabs */
+
+        sessionTabs.forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+        /* Hide sessions */
+
+        sessionContents.forEach(section => {
+
+            section.classList.remove("active");
+
+        });
+
+
+        /* Activate clicked */
+
+        tab.classList.add("active");
+
+
+        const target =
+            document.getElementById(
+                "session-" + session
+            );
+
+
+        target.classList.add("active");
+
+
+        /* Reset search */
+
+        const search =
+            target.querySelector(
+                ".module-search"
+            );
+
+        if(search){
+
+            search.value = "";
+
+        }
+
+
+        /* Show all modules */
+
+        target
+            .querySelectorAll(".module-card")
+            .forEach(card => {
+
+                card.style.display = "";
+
+            });
+
+
+        updateNoResults(target);
+
+
+        /* Animate progress */
+
+        animateProgress(target);
+
+
+        /* Reveal cards */
+
+        revealCards(target);
+
+
+        /* Smooth scroll */
+
+        setTimeout(() => {
+
+            target.scrollIntoView({
+
+                behavior:"smooth",
+
+                block:"start"
+
+            });
+
+        },80);
+
+    });
+
+});
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+function animateProgress(container){
+
+    const bars =
+        container.querySelectorAll(
+            ".progress-bar"
+        );
+
+
+    bars.forEach(bar => {
+
+        const width =
+            bar.dataset.width;
+
+
+        bar.style.width = "0";
+
+
+        setTimeout(() => {
+
+            bar.style.width = width;
+
+        },120);
+
+    });
+
+}
+
+
+/* =========================================================
+   SEARCH MODULES
+========================================================= */
+
+document
+    .querySelectorAll(".module-search")
+    .forEach(search => {
+
+
+    search.addEventListener("input", () => {
+
+        const query =
+            search.value
+                .toLowerCase()
+                .trim();
+
+
+        const session =
+            search.closest(
+                ".session-content"
+            );
+
+
+        const modules =
+            session.querySelectorAll(
+                ".module-card"
+            );
+
+
+        modules.forEach(module => {
+
+            const text =
+                module.innerText
+                    .toLowerCase();
+
+
+            if(
+                text.includes(query)
+                || query === ""
+            ){
+
+                module.style.display = "";
+
+            }else{
+
+                module.style.display = "none";
+
+            }
+
+        });
+
+
+        updateNoResults(session);
+
+    });
+
+});
+
+
+/* =========================================================
+   NO SEARCH RESULT
+========================================================= */
+
+function updateNoResults(session){
+
+    const modules =
+        session.querySelectorAll(
+            ".module-card"
+        );
+
+
+    const noResults =
+        session.querySelector(
+            ".no-results"
+        );
+
+
+    let visible = 0;
+
+
+    modules.forEach(module => {
+
+        if(
+            module.style.display !== "none"
+        ){
+
+            visible++;
+
+        }
+
+    });
+
+
+    if(visible === 0){
+
+        noResults.style.display = "block";
+
+    }else{
+
+        noResults.style.display = "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   CARD REVEAL
+========================================================= */
+
+function revealCards(container){
+
+    const cards =
+        container.querySelectorAll(
+            ".module-card"
+        );
+
+
+    cards.forEach((card,index) => {
+
+        card.classList.remove("show");
+
+
+        setTimeout(() => {
+
+            card.classList.add("show");
+
+        },index * 70);
+
+    });
+
+}
+
+
+/* =========================================================
+   INTERSECTION OBSERVER
+========================================================= */
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(
+                    entry.isIntersecting
+                ){
+
+                    entry.target
+                        .classList
+                        .add("show");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.12
+        }
+
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+window.addEventListener("load", () => {
+
+    const firstSession =
+        document.getElementById(
+            "session-1"
+        );
+
+
+    animateProgress(firstSession);
+
+    revealCards(firstSession);
+
+});
+
+
+/* =========================================================
+   KEYBOARD SHORTCUT
+   1 / 2 / 3 / 4 = SESSION
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.target.tagName === "INPUT"
+        ){
+
+            return;
+
+        }
+
+
+        const key =
+            event.key;
+
+
+        if(
+            ["1","2","3","4"]
+            .includes(key)
+        ){
+
+            const tab =
+                document.querySelector(
+                    `.session-tab[data-session="${key}"]`
+                );
+
+
+            if(tab){
+
+                tab.click();
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SESSION TAB ACCESSIBILITY
+========================================================= */
+
+sessionTabs.forEach(tab => {
+
+    tab.setAttribute(
+        "role",
+        "button"
+    );
+
+    tab.setAttribute(
+        "tabindex",
+        "0"
+    );
+
+
+    tab.addEventListener(
+        "keydown",
+        event => {
+
+            if(
+                event.key === "Enter"
+                ||
+                event.key === " "
+            ){
+
+                event.preventDefault();
+
+                tab.click();
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>
