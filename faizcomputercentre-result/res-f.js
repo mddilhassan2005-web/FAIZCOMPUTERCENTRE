@@ -448,7 +448,6 @@ async function checkResult() {
 
     addFCCPrefix(rollInput);
 
-    addFCCPrefix(testIdInput);
 
 
     const finalRoll =
